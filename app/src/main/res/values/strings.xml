@@ -1,0 +1,6 @@
+<resources>
+    <string name="purchase_attention" translatable="false">- Payment will charged to Itunes account at confirm of purchase\n-Subscription automatically renews unless auto-renew is turned off at least 24h</string>
+    <string name="remain_turn" translatable="false">You have %s free messages.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,101 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.FingerChallenge" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Customize your theme here. -->
+<!--        <item name="android:windowBackground">@color/_030318</item>-->
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+    </style>
+
+    <style name="SwipeSelectorTextTitleStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/_efedff</item>
+    </style>
+
+    <style name="SwipeSelectorTextDescriptionStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textColor">@color/_efedff</item>
+    </style>
+    <!--Alert dialog-->
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- Background Color-->
+        <item name="android:background">@color/_1a1a2b</item>
+        <!-- Text Color for title and message -->
+        <item name="colorOnSurface">@color/_efedff</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/AlertDialogTitleTextStyle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/AlertDialogMessageTextStyle</item>
+        <!-- Style for positive button -->
+        <item name="buttonBarPositiveButtonStyle">@style/AlertDialogPositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AlertDialogNegativeButtonStyle</item>
+        <!-- https://stackoverflow.com/a/62432311/12697321 -->
+        <item name="shapeAppearanceOverlay">@style/AlertDialogCornerStyle</item>
+
+    </style>
+
+    <style name="AlertDialogCornerStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/dp_16</item>
+    </style>
+
+    <style name="AlertDialogTitleTextStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textSize">@dimen/sp_20</item>
+        <item name="android:textColor">@color/_efedff</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AlertDialogMessageTextStyle" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:textColor">@color/_efedff</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="AlertDialogPositiveButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <!-- text color for the button -->
+        <item name="android:textColor">@color/_efedff</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+        <!-- Background tint for the button -->
+        <item name="backgroundTint">@color/_1a1a2b</item>
+    </style>
+
+    <style name="AlertDialogNegativeButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <!-- text color for the button -->
+        <item name="android:textColor">@color/_cfd0d2</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+        <!-- Background tint for the button -->
+        <item name="backgroundTint">@color/_1a1a2b</item>
+    </style>
+    <!--Bottom sheet-->
+    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalBottomSheetDialog</item>
+    </style>
+
+    <style name="ModalBottomSheetDialog" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="backgroundTint">@color/_1a1a2b</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+        <item name="elevation">32dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/dp_16</item>
+    </style>
+    <!---->
+    <style name="shapeImageViewStyle20">
+        <item name="cornerSize">20%</item>
+    </style>
+    <style name="shapeImageViewStyle50">
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>
