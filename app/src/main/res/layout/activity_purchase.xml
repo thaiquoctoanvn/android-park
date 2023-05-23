@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dp_16">
+
+    <FrameLayout
+        android:id="@+id/container1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="@dimen/dp_8"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/bt_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:paddingHorizontal="@dimen/dp_16"
+            android:src="@drawable/baseline_close_24"
+            app:tint="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Unclock Premium"
+            android:textAlignment="center"
+            android:textColor="@color/_58ae8e"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_16"
+        android:paddingBottom="@dimen/dp_32"
+        app:layout_constraintBottom_toTopOf="@id/av_banner_container"
+        app:layout_constraintTop_toBottomOf="@id/ll"
+        app:layout_goneMarginBottom="0dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_intro" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_32"
+                android:lineSpacingExtra="@dimen/dp_4"
+                android:text="Unlimited Usage / Questions &amp; Answers\nNo more ads\nHigher word counts in reponses\nNo commitments, cancel anytime"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16" />
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:id="@+id/bt_monthly"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/dp_16"-->
+<!--                app:cardBackgroundColor="@color/_58ae8e"-->
+<!--                app:cardCornerRadius="@dimen/dp_32">-->
+
+<!--                <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:paddingHorizontal="@dimen/dp_16"-->
+<!--                    android:paddingVertical="@dimen/dp_8">-->
+
+<!--                    <androidx.appcompat.widget.AppCompatTextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/dp_16"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Monthly - Free 3 days trial"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/sp_18" />-->
+
+<!--                    <androidx.appcompat.widget.AppCompatTextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/dp_4"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="$9.99"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/sp_16" />-->
+<!--                </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:id="@+id/bt_yearly"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/dp_12"-->
+<!--                app:cardCornerRadius="@dimen/dp_32"-->
+<!--                app:cardElevation="0dp"-->
+<!--                app:strokeColor="@color/_58ae8e"-->
+<!--                app:strokeWidth="3dp">-->
+
+<!--                <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:paddingHorizontal="@dimen/dp_16"-->
+<!--                    android:paddingVertical="@dimen/dp_8">-->
+
+<!--                    <androidx.appcompat.widget.AppCompatTextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/dp_16"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Yearly - Free 3 days trial"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/sp_18" />-->
+
+<!--                    <androidx.appcompat.widget.AppCompatTextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/dp_4"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="$19.99"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/sp_16" />-->
+<!--                </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:id="@+id/bt_permanent"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/dp_12"-->
+<!--                app:cardCornerRadius="@dimen/dp_32"-->
+<!--                app:cardElevation="0dp"-->
+<!--                app:strokeColor="@color/_58ae8e"-->
+<!--                app:strokeWidth="3dp">-->
+
+<!--                <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:paddingHorizontal="@dimen/dp_16"-->
+<!--                    android:paddingVertical="@dimen/dp_8">-->
+
+<!--                    <androidx.appcompat.widget.AppCompatTextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/dp_16"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Lifetime access"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/sp_18" />-->
+
+<!--                    <androidx.appcompat.widget.AppCompatTextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/dp_4"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="$49.99"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="@dimen/sp_16" />-->
+<!--                </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_purchase_plan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                android:layout_marginTop="@dimen/dp_16"
+                tools:listitem="@layout/item_purchase_plan"
+                tools:itemCount="3">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_24"
+                android:text="Or continue with ads &amp; limited features"
+                android:textColor="@color/_b5b5b9"
+                android:textSize="@dimen/sp_14" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_32"
+                android:text="@string/purchase_attention"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/container2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_16">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_term"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="@dimen/dp_8"
+            android:text="Term of use"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@color/_58ae8e"
+            android:textSize="@dimen/sp_16" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingVertical="@dimen/dp_8"
+            android:text="Privacy Policy"
+            android:textColor="@color/_58ae8e"
+            android:textSize="@dimen/sp_16" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

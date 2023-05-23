@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#ffffff">
+
+    <FrameLayout
+        android:id="@+id/container1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="@dimen/dp_8"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/bt_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:paddingHorizontal="@dimen/dp_16"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+            app:tint="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Conversation Chat"
+            android:textAlignment="center"
+            android:textSize="@dimen/sp_20"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_chat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_24"
+        app:layout_constraintBottom_toTopOf="@id/include1"
+        app:layout_constraintTop_toBottomOf="@id/container1" />
+
+    <include
+        android:id="@+id/include1"
+        layout="@layout/view_message_typing_box"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_max="wrap"
+        app:layout_constraintHeight_percent="0.4"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

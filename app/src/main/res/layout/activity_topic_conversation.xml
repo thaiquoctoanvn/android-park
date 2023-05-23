@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:fitsSystemWindows="true"
+    android:paddingTop="@dimen/dp_16"
+    android:paddingBottom="@dimen/dp_16"
+    tools:context=".component.topic.TopicActivity">
+
+    <FrameLayout
+        android:id="@+id/container1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="@dimen/dp_8"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/bt_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:paddingHorizontal="@dimen/dp_16"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+            app:tint="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Write me a song"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_sub_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_24"
+        android:text="Write me a song of"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/container1" />
+
+    <include
+        android:id="@+id/include1"
+        layout="@layout/view_message_typing_box"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_16"
+        app:layout_constraintHeight_max="wrap"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintTop_toBottomOf="@id/txt_sub_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16"
+        android:text="You have"
+        app:layout_constraintTop_toBottomOf="@id/include1"
+        android:layout_marginTop="@dimen/dp_32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/bt_go_premium"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:id="@+id/txt_remain_turn"/>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bt_go_premium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_16"
+        app:cardBackgroundColor="@color/black"
+        app:layout_constraintTop_toTopOf="@id/txt_remain_turn"
+        app:layout_constraintBottom_toBottomOf="@id/txt_remain_turn"
+        app:layout_constraintEnd_toEndOf="parent">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/dp_8"
+            android:paddingHorizontal="@dimen/dp_16"
+            android:orientation="horizontal">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:src="@drawable/icon_sapphire"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:text="WatchAd +3"
+                android:textColor="@color/_ff9500"
+                android:gravity="center_vertical"
+                android:id="@+id/txt_go_premium"
+                android:textStyle="bold"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_bot"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_24"
+        android:src="@drawable/icon_ai"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_remain_turn" />
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:background="@drawable/bg_text_box"
+        android:paddingVertical="@dimen/dp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_bot">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tb_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:gravity="start"
+
+            android:lineSpacingExtra="@dimen/dp_4"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/sp_16" />
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+    <entry>
+        <key>interstitial_ad</key>
+        <value>3870783395</value> <!--Production ad-->
+    </entry>
+    <entry>
+        <key>banner_ad</key>
+        <value>4060972198</value> <!--Production ad-->
+    </entry>
+    <entry>
+        <key>rewarded_ad</key>
+        <value>3410235505</value> <!--Production ad-->
+    </entry>
+    <entry>
+        <key>app_open_ad</key>
+        <value>2120938633</value> <!--Production ad-->
+    </entry>
+    <entry>
+        <key>publisher_id</key>
+        <value>ca-app-pub-2427874870616509</value> <!--Production id-->
+    </entry>
+    <entry>
+        <key>share_app_url</key>
+        <value>https://play.google.com/</value>
+    </entry>
+    <entry>
+        <key>open_ai_api_key</key>
+        <value>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</value>
+    </entry>
+    <entry>
+        <key>inapp_products</key>
+        <value>{"products":[{"id":"0","type":"subs"},{"id":"1","type":"subs"}]}</value>
+    </entry>
+    <entry>
+        <key>term_of_use_url</key>
+        <value>https://hanalolab.blogspot.com/p/terms.html</value>
+    </entry>
+    <entry>
+        <key>policy_url</key>
+        <value>https://hanalolab.blogspot.com/p/privacy.html</value>
+    </entry>
+</defaults>

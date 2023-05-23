@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <color name="_030318">#ff030318</color>
+    <color name="_2c3639">#ff2c3639</color>
+    <color name="_e04386">#ffe04386</color>
+    <color name="_00000075">#bf000000</color>
+    <color name="_2c363975">#bf2c3639</color>
+    <color name="_cfd0d2">#ffcfd0d2</color>
+    <color name="_1a1a2b">#ff1a1a2b</color>
+    <!---->
+    <color name="_ef4032">#ffef4032</color>
+    <color name="_3b50af">#ff3b50af</color>
+    <color name="_8bc34c">#ff8bc34c</color>
+    <color name="_fbe93a">#fffbe93a</color>
+    <color name="_f28a33">#fff28a33</color>
+    <color name="_9c846c">#ff9c846c</color>
+    <color name="_6a5091">#ff6a5091</color>
+    <color name="_eca697">#ffeca697</color> <!--peach pink-->
+    <color name="_ffbce1">#ffffbce1</color>
+    <color name="_91ffff">#ff91ffff</color> <!--cyan-->
+    <color name="_faf0d7">#fffaf0d7</color>
+    <color name="_938f43">#ff938f43</color> <!--dark olive-->
+    <color name="_ffee93">#ffffee93</color> <!--lemon-->
+    <color name="_72cba2">#ff72cba2</color> <!--mint-->
+    <color name="_00d86b">#ff00d86b</color> <!--jade-->
+    <color name="_bbbbbe">#ffbbbbbe</color> <!--grey-->
+    <!---->
+    <color name="_efedff">#ffefedff</color>
+    
+    <color name="_58ae8e">#58ae8e</color>
+    <color name="_e3e3e5">#e3e3e5</color>
+    <color name="_b5b5b9">#b5b5b9</color>
+    <color name="_32ade6">#32ade6</color>
+    <color name="_ff9500">#ff9500</color>
+</resources>
