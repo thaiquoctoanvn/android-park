@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="io.edenx.androidpark">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -15,6 +20,12 @@
         android:theme="@style/Theme.FingerChallenge"
         tools:replace="android:label"
         tools:targetApi="31">
+        <activity
+            android:name=".component.camera.CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".component.animation.AnimationActivity"
+            android:exported="false" />
         <activity
             android:name=".component.gesture.MultiTouchActivity"
             android:exported="false" />

@@ -20,7 +20,9 @@ import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.UpdateAvailability
 import dagger.hilt.android.AndroidEntryPoint
 import io.edenx.androidpark.R
+import io.edenx.androidpark.component.animation.AnimationActivity
 import io.edenx.androidpark.component.base.BaseActivity
+import io.edenx.androidpark.component.camera.CameraActivity
 import io.edenx.androidpark.component.nav.NavigationActivity
 import io.edenx.androidpark.component.paging.PagingActivity
 import io.edenx.androidpark.data.model.MenuItem
@@ -117,6 +119,12 @@ class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::infl
             TypeMenu.NAV -> {
                 startActivity(Intent(this, NavigationActivity::class.java))
             }
+            TypeMenu.ANIMATION -> {
+                startActivity(Intent(this, AnimationActivity::class.java))
+            }
+            TypeMenu.CAMERA -> {
+                startActivity(Intent(this, CameraActivity::class.java))
+            }
             else -> {}
         }
     }
@@ -125,6 +133,8 @@ class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::infl
         MenuItem(1, type = TypeMenu.BILLING),
         MenuItem(2, type = TypeMenu.PAGING),
         MenuItem(3, type = TypeMenu.NAV),
+        MenuItem(4, type = TypeMenu.ANIMATION),
+        MenuItem(5, type = TypeMenu.CAMERA),
     )
 }
 

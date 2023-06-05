@@ -11,5 +11,7 @@ data class MenuItem(
 enum class TypeMenu(val prompt: String) {
     BILLING("Inapp billing"),
     PAGING("Paging 3"),
-    NAV("Navigation")
+    NAV("Navigation"),
+    ANIMATION("Animation"),
+    CAMERA("Camera")
 }
