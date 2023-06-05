@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "923266553230",
-    "project_id": "prj2023-4dd73",
-    "storage_bucket": "prj2023-4dd73.appspot.com"
+    "project_number": "76588704604",
+    "project_id": "android-assamble",
+    "storage_bucket": "android-assamble.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:923266553230:android:ae8ad296d75f77560dc0df",
+        "mobilesdk_app_id": "1:76588704604:android:66b9c419014dc4c62a5799",
         "android_client_info": {
-          "package_name": "io.lacanh.aiassistant"
+          "package_name": "io.edenx.androidpark"
         }
       },
       "oauth_client": [
         {
-          "client_id": "923266553230-j5t0o1ojsu126op0nsq0b3jm7o8gaeva.apps.googleusercontent.com",
+          "client_id": "76588704604-3blja7iqbjfu2ng8jsjautbu10ko7vls.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAYenCbak2vzyEBONodgZibuHQGv5ERjsI"
+          "current_key": "AIzaSyApNgveSZdsvrq6TNj16OrYF9CSXKNg184"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "923266553230-j5t0o1ojsu126op0nsq0b3jm7o8gaeva.apps.googleusercontent.com",
+              "client_id": "76588704604-3blja7iqbjfu2ng8jsjautbu10ko7vls.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "923266553230-5loubqueje9bh3kdbu0f2t68p6t5g547.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.lacanh.aichatgpt"
-              }
             }
           ]
         }
@@ -43,35 +36,28 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:923266553230:android:953fbbb67c3332340dc0df",
+        "mobilesdk_app_id": "1:76588704604:android:a86d5d2a929bfb462a5799",
         "android_client_info": {
-          "package_name": "io.lacanh.aiassistant.debug"
+          "package_name": "io.edenx.androidpark.debug"
         }
       },
       "oauth_client": [
         {
-          "client_id": "923266553230-j5t0o1ojsu126op0nsq0b3jm7o8gaeva.apps.googleusercontent.com",
+          "client_id": "76588704604-3blja7iqbjfu2ng8jsjautbu10ko7vls.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAYenCbak2vzyEBONodgZibuHQGv5ERjsI"
+          "current_key": "AIzaSyApNgveSZdsvrq6TNj16OrYF9CSXKNg184"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "923266553230-j5t0o1ojsu126op0nsq0b3jm7o8gaeva.apps.googleusercontent.com",
+              "client_id": "76588704604-3blja7iqbjfu2ng8jsjautbu10ko7vls.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "923266553230-5loubqueje9bh3kdbu0f2t68p6t5g547.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.lacanh.aichatgpt"
-              }
             }
           ]
         }
