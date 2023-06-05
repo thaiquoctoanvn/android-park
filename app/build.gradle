@@ -20,7 +20,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "io.lacanh.aiassistant"
+        applicationId "io.edenx.androidpark"
         minSdk 24
         targetSdk 33
         versionCode 7
@@ -33,8 +33,8 @@ android {
         debug {
             applicationIdSuffix ".debug"
             debuggable true
-            manifestPlaceholders = [appName: "Debug Android Assamble"]
-            buildConfigField "String", "APP_NAME", "\"Debug Android Assamble\""
+            manifestPlaceholders = [appName: "Debug Android Park"]
+            buildConfigField "String", "APP_NAME", "\"Debug Android Park\""
         }
 
         release {
@@ -42,8 +42,8 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [appName: "Android Assamble"]
-            buildConfigField "String", "APP_NAME", "\"Android Assamble\""
+            manifestPlaceholders = [appName: "Android Park"]
+            buildConfigField "String", "APP_NAME", "\"Android Park\""
             signingConfig signingConfigs.release
         }
     }
