@@ -33,8 +33,8 @@ android {
         debug {
             applicationIdSuffix ".debug"
             debuggable true
-            manifestPlaceholders = [appName: "Debug Android Park"]
-            buildConfigField "String", "APP_NAME", "\"Debug Android Park\""
+            manifestPlaceholders = [appName: "Dev Android Park"]
+            buildConfigField "String", "APP_NAME", "\"De Android Park\""
         }
 
         release {
@@ -101,6 +101,7 @@ dependencies {
     implementation "androidx.camera:camera-view:$camerax_version"
     // A part of vision api
     implementation 'com.google.mlkit:image-labeling:17.0.7'
+    implementation 'com.google.mlkit:barcode-scanning:17.1.0'
 
     def paging_version = "3.1.1"
     implementation "androidx.paging:paging-runtime:$paging_version"
@@ -128,6 +129,8 @@ dependencies {
     //implementation("com.github.skydoves:transformationlayout:1.1.2")
 
     implementation 'com.kaopiz:kprogresshud:1.2.0'
+
+    implementation 'com.google.zxing:core:3.5.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
