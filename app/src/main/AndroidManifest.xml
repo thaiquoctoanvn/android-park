@@ -3,10 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="io.edenx.androidpark">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <!--below android 12-->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+    <!--higher android 12-->
+    <!--required for connect another bluetooth-->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <!--required for discovery bluetooth-->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--ACCESS_FINE_LOCATION also requires ACCESS_COARSE_LOCATION-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--need for getting MAC address-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="true" />
 
     <application
         android:name=".App"
@@ -20,6 +42,12 @@
         android:theme="@style/Theme.FingerChallenge"
         tools:replace="android:label"
         tools:targetApi="31">
+        <activity
+            android:name=".component.connectivity.BluetoothConnectingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".component.connectivity.FileTransferActivity"
+            android:exported="false" />
         <activity
             android:name=".component.camera.CameraActivity"
             android:exported="false" />

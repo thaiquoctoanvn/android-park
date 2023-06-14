@@ -23,6 +23,8 @@ import io.edenx.androidpark.R
 import io.edenx.androidpark.component.animation.AnimationActivity
 import io.edenx.androidpark.component.base.BaseActivity
 import io.edenx.androidpark.component.camera.CameraActivity
+import io.edenx.androidpark.component.connectivity.BluetoothConnectingActivity
+import io.edenx.androidpark.component.connectivity.FileTransferActivity
 import io.edenx.androidpark.component.nav.NavigationActivity
 import io.edenx.androidpark.component.paging.PagingActivity
 import io.edenx.androidpark.data.model.MenuItem
@@ -122,8 +124,17 @@ class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::infl
             TypeMenu.ANIMATION -> {
                 startActivity(Intent(this, AnimationActivity::class.java))
             }
-            TypeMenu.CAMERA -> {
-                startActivity(Intent(this, CameraActivity::class.java))
+            TypeMenu.IMG_LABELING -> {
+                startActivity(Intent(this, CameraActivity::class.java).putExtra("type", CameraActivity.CameraScreenType.IMG_LABELING.name))
+            }
+            TypeMenu.QR_DETECTING -> {
+                startActivity(Intent(this, CameraActivity::class.java).putExtra("type", CameraActivity.CameraScreenType.QR_DETECTING.name))
+            }
+            TypeMenu.FILE_TRANSFERRING -> {
+                startActivity(Intent(this, FileTransferActivity::class.java))
+            }
+            TypeMenu.BLUETOOTH_DISCOVERY -> {
+                startActivity(Intent(this, BluetoothConnectingActivity::class.java))
             }
             else -> {}
         }
@@ -134,7 +145,10 @@ class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::infl
         MenuItem(2, type = TypeMenu.PAGING),
         MenuItem(3, type = TypeMenu.NAV),
         MenuItem(4, type = TypeMenu.ANIMATION),
-        MenuItem(5, type = TypeMenu.CAMERA),
+        MenuItem(5, type = TypeMenu.IMG_LABELING),
+        MenuItem(6, type = TypeMenu.QR_DETECTING),
+        MenuItem(7, type = TypeMenu.FILE_TRANSFERRING),
+        MenuItem(8, type = TypeMenu.BLUETOOTH_DISCOVERY),
     )
 }
 
@@ -165,7 +179,7 @@ class MyMenuAdapter(
         fun bindData(item: MenuItem) {
             with(binding) {
                 Glide.with(this.root.context)
-                    .load(item.iconRes)
+                    .load(R.drawable.park)
                     .error(R.drawable.ic_baseline_error_outline_24)
                     .into(imgMenu)
 

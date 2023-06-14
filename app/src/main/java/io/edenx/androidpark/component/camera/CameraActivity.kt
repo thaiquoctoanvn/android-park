@@ -12,7 +12,14 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>(ActivityCameraBinding
     override fun onViewCreated() {
         supportFragmentManager.commit {
             setCustomAnimations(R.anim.slide_from_right, 0, 0, R.anim.slide_to_right)
-            add(binding.fcv.id, ImgLabelingFragment::class.java, null)
+            when (intent.getStringExtra("type")) {
+                CameraScreenType.IMG_LABELING.name -> add(binding.fcv.id, ImgLabelingFragment::class.java, null)
+                CameraScreenType.QR_DETECTING.name -> add(binding.fcv.id, QrDetectingFragment::class.java, null)
+            }
         }
+    }
+
+    enum class CameraScreenType {
+        IMG_LABELING, QR_DETECTING
     }
 }

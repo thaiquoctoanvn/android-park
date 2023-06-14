@@ -13,5 +13,8 @@ enum class TypeMenu(val prompt: String) {
     PAGING("Paging 3"),
     NAV("Navigation"),
     ANIMATION("Animation"),
-    CAMERA("Camera")
+    IMG_LABELING("Img Labeling"),
+    QR_DETECTING("Qr Detecting"),
+    FILE_TRANSFERRING("File Transferring"),
+    BLUETOOTH_DISCOVERY("Bluetooth Discovery")
 }
