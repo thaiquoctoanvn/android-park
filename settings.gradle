@@ -14,7 +14,7 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "Android Park"
+rootProject.name = "Android Playground"
 include ':app'
 //include ':bubblepicker'
 //project(':bubblepicker').projectDir = new File("..${File.separator}Bubble-Picker-develop${File.separator}bubblepicker")

@@ -23,9 +23,11 @@
             android:layout_width="@dimen/dp_32"
             android:layout_height="@dimen/dp_32"
             android:layout_gravity="start|center_vertical"
-            app:srcCompat="@drawable/settings" />
+            app:srcCompat="@drawable/settings"
+            android:visibility="gone"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -68,7 +70,7 @@
                 android:id="@+id/tl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:visibility="gone">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
