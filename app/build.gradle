@@ -33,8 +33,8 @@ android {
         debug {
             applicationIdSuffix ".debug"
             debuggable true
-            manifestPlaceholders = [appName: "Dev Android Park"]
-            buildConfigField "String", "APP_NAME", "\"De Android Park\""
+            manifestPlaceholders = [appName: "Andrd Playgrnd"]
+            buildConfigField "String", "APP_NAME", "\"Andrd Playgrnd\""
         }
 
         release {
@@ -42,8 +42,8 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [appName: "Android Park"]
-            buildConfigField "String", "APP_NAME", "\"Android Park\""
+            manifestPlaceholders = [appName: "Andrd Playgrnd"]
+            buildConfigField "String", "APP_NAME", "\"Andrd Playgrnd\""
             signingConfig signingConfigs.release
         }
     }
