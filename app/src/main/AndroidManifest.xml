@@ -2,33 +2,33 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="io.edenx.androidplayground">
-
-    <!--below android 12-->
+    <!-- below android 12 -->
     <uses-permission
         android:name="android.permission.BLUETOOTH"
         android:maxSdkVersion="30" />
     <uses-permission
         android:name="android.permission.BLUETOOTH_ADMIN"
-        android:maxSdkVersion="30" />
-    <!--higher android 12-->
-    <!--required for connect another bluetooth-->
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <!--required for discovery bluetooth-->
+        android:maxSdkVersion="30" /> <!-- higher android 12 -->
+    <!-- required for connect another bluetooth -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" /> <!-- required for discovery bluetooth -->
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--ACCESS_FINE_LOCATION also requires ACCESS_COARSE_LOCATION-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!--need for getting MAC address-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- ACCESS_FINE_LOCATION also requires ACCESS_COARSE_LOCATION -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- need for getting MAC address -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
 
     <uses-feature
         android:name="android.hardware.bluetooth"
         android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:name=".App"
@@ -42,6 +42,12 @@
         android:theme="@style/Theme.FingerChallenge"
         tools:replace="android:label"
         tools:targetApi="31">
+        <activity
+            android:name=".component.media.PlaylistActivity"
+            android:exported="false" />
+        <activity
+            android:name=".component.media.MediaPlayerActivity"
+            android:exported="false" />
         <activity
             android:name=".component.connectivity.BluetoothConnectingActivity"
             android:exported="false" />
@@ -83,6 +89,15 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
+
+        <service
+            android:name=".component.media.Media3PlaybackService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

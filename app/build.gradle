@@ -132,6 +132,16 @@ dependencies {
 
     implementation 'com.google.zxing:core:3.5.1'
 
+    def media3_version = "1.1.0"
+    // For media playback using ExoPlayer
+    implementation "androidx.media3:media3-exoplayer:$media3_version"
+    // For DASH playback support with ExoPlayer
+    implementation "androidx.media3:media3-exoplayer-dash:$media3_version"
+    // For building media playback UIs
+    implementation "androidx.media3:media3-ui:$media3_version"
+    // For exposing and controlling media sessions
+    implementation "androidx.media3:media3-session:$media3_version"
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'

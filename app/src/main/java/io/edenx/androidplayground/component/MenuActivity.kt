@@ -26,6 +26,8 @@ import io.edenx.androidplayground.component.base.BaseActivity
 import io.edenx.androidplayground.component.camera.CameraActivity
 import io.edenx.androidplayground.component.connectivity.BluetoothConnectingActivity
 import io.edenx.androidplayground.component.connectivity.FileTransferActivity
+import io.edenx.androidplayground.component.media.MediaPlayerActivity
+import io.edenx.androidplayground.component.media.PlaylistActivity
 import io.edenx.androidplayground.component.nav.NavigationActivity
 import io.edenx.androidplayground.component.paging.PagingActivity
 import io.edenx.androidplayground.data.model.MenuItem
@@ -111,7 +113,7 @@ class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::infl
             layoutManager = GridLayoutManager(this.context, 2, RecyclerView.VERTICAL, false)
             addItemDecoration(DmitrysGridItemDecoration(24, 2))
         }
-
+        startActivity(Intent(this, PlaylistActivity::class.java))
     }
 
     private fun openSample(item: MenuItem) {
