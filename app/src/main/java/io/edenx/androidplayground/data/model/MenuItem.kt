@@ -23,5 +23,6 @@ enum class TypeMenu(val prompt: String, val screen: Class<*>? = null) {
     IMG_LABELING("Img Labeling", CameraActivity::class.java),
     QR_DETECTING("Qr Detecting", CameraActivity::class.java),
     FILE_TRANSFERRING("File Transferring", FileTransferActivity::class.java),
-    BLUETOOTH_DISCOVERY("Bluetooth Discovery", BluetoothConnectingActivity::class.java)
+    BLUETOOTH_DISCOVERY("Bluetooth Discovery", BluetoothConnectingActivity::class.java),
+    MEDIA_3("Media Player", )
 }
