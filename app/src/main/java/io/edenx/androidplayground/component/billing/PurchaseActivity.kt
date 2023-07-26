@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.component
+package io.edenx.androidplayground.component.billing
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,20 +27,24 @@ class PurchaseActivity : BaseActivity<ActivityPurchaseBinding>(ActivityPurchaseB
 
     @Inject
     lateinit var billingUtil: BillingUtil
+
     @Inject
     lateinit var purchasesUpdatedListenerImpl: PurchasesUpdatedListenerImpl
+
     @Inject
     lateinit var sharedPrefUtil: SharedPrefUtil
     private lateinit var purchasePlanAdapter: PurchasePlanAdapter
 
     private val productItems = mutableListOf<ProductDetails>()
     private var oldPurchase: Purchase? = null
+    private var selectedPlan: ProductDetails? = null
 
     override fun onViewCreated() {
         binding.rvPurchasePlan.apply {
             purchasePlanAdapter = PurchasePlanAdapter(
                 onItemClick = { item, _ ->
                     productItems.find { it.productId == item.id }?.let {
+                        selectedPlan = it
                         billingUtil.launchPurchaseFlow(this@PurchaseActivity, it, oldPurchase)
                     }
                 }
@@ -64,24 +68,42 @@ class PurchaseActivity : BaseActivity<ActivityPurchaseBinding>(ActivityPurchaseB
             when {
                 billingResult.responseCode == BillingClient.BillingResponseCode.OK && !purchases.isNullOrEmpty() -> {
                     purchases.forEach {
-                        billingUtil.acknowledgePurchase(
-                            purchase = it,
-                            onPurchaseSucceed = {
-                                sharedPrefUtil.setIsBillingPurchased(true)
-                            },
-                            onPurchaseFailed = {
-                                sharedPrefUtil.setIsBillingPurchased(false)
-                            },
-                            onAcknowledged = {
-                                sharedPrefUtil.setIsBillingPurchased(true)
+                        if (Gson().fromJson(it.originalJson, Map::class.java)["productId"] == selectedPlan?.productId) {
+                            if (selectedPlan?.productType == BillingClient.ProductType.INAPP) {
+                                billingUtil.consumePurchase(
+                                    purchase = it,
+                                    onPurchaseSucceed = { _, _ ->
+                                        oldPurchase = it
+                                        sharedPrefUtil.setIsBillingPurchased(true)
+                                    },
+                                    onPurchaseFailed = {
+                                        sharedPrefUtil.setIsBillingPurchased(false)
+                                    },
+                                )
+                            } else {
+                                billingUtil.acknowledgePurchase(
+                                    purchase = it,
+                                    onPurchaseSucceed = { _ ->
+                                        oldPurchase = it
+                                        sharedPrefUtil.setIsBillingPurchased(true)
+                                    },
+                                    onPurchaseFailed = {
+                                        sharedPrefUtil.setIsBillingPurchased(false)
+                                    },
+                                    onAcknowledged = {
+                                        sharedPrefUtil.setIsBillingPurchased(true)
+                                    }
+                                )
                             }
-                        )
+                        }
                     }
                 }
+
                 billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED -> {
                     Log.d(BillingUtil.tag, "Purchase flow error cancelled by user")
                     sharedPrefUtil.setIsBillingPurchased(false)
                 }
+
                 else -> {
                     Log.d(BillingUtil.tag, "Purchase flow other error")
                 }
@@ -110,12 +132,6 @@ class PurchaseActivity : BaseActivity<ActivityPurchaseBinding>(ActivityPurchaseB
             setResult(RESULT_OK)
             finish()
         }
-        binding.txtTerm.setOnClickListener {
-            openBrowser(Firebase.remoteConfig.getString(TERM_OF_USE_URL_KEY), this)
-        }
-        binding.txtPrivacy.setOnClickListener {
-            openBrowser(Firebase.remoteConfig.getString(POLICY_URL_KEY), this)
-        }
     }
 
     override fun onBackPressed() {
@@ -130,15 +146,17 @@ class PurchaseActivity : BaseActivity<ActivityPurchaseBinding>(ActivityPurchaseB
             )?.products?.let {
                 billingUtil.queryProductDetails(it.associate {
                     it.id!! to it.type!!
-                }) { billingResult, list ->
+                }) { list ->
                     productItems.clear()
                     if (list.isNotEmpty()) productItems.addAll(list)
                     purchasePlanAdapter.submitList(productItems.map {
                         PurchasePlanItem(
                             id = it.productId,
                             title = it.name,
-                            price = it.subscriptionOfferDetails?.first()?.pricingPhases?.pricingPhaseList?.first()?.formattedPrice
-                                ?: "$1"
+                            price = (if (it.productType == BillingClient.ProductType.SUBS) it.subscriptionOfferDetails?.firstOrNull()?.pricingPhases?.pricingPhaseList?.find { it.priceAmountMicros != 0L }?.formattedPrice
+                            else it.oneTimePurchaseOfferDetails?.formattedPrice)
+                                ?: "Error to load price",
+                            description = it.description
                         )
                     })
                 }
@@ -149,11 +167,20 @@ class PurchaseActivity : BaseActivity<ActivityPurchaseBinding>(ActivityPurchaseB
     }
 
     private fun checkPurchases() {
-        billingUtil.queryPurchases(BillingClient.ProductType.SUBS) { billingResult, purchaseList ->
+        billingUtil.queryPurchases(
+            BillingClient.ProductType.INAPP,
+            BillingClient.ProductType.SUBS
+        ) { purchaseList ->
             if (purchaseList.isEmpty()) sharedPrefUtil.setIsBillingPurchased(false)
             purchaseList.forEach {
-                if (it.purchaseState == Purchase.PurchaseState.PURCHASED && it.isAcknowledged) oldPurchase =
-                    it
+                if (it.key == BillingClient.ProductType.SUBS) {
+                    it.value.forEach {
+                        if (it.purchaseState == Purchase.PurchaseState.PURCHASED && it.isAcknowledged) oldPurchase =
+                            it
+                    }
+                } else {
+                    // Still not return the purchased in-app products, only subs are returned. It was known a bug. For this reason we couldn't check if user bought the lifetime product to prevent them purchasing it again
+                }
             }
         }
     }
@@ -162,7 +189,9 @@ class PurchaseActivity : BaseActivity<ActivityPurchaseBinding>(ActivityPurchaseB
 class PurchasePlanAdapter(
     mItems: List<PurchasePlanItem> = listOf(),
     private val onItemClick: (PurchasePlanItem, View) -> Unit = { _, _ -> }
-) : ListAdapter<PurchasePlanItem, PurchasePlanAdapter.ItemHolder>(AdapterDiff()) {
+) : androidx.recyclerview.widget.ListAdapter<PurchasePlanItem, PurchasePlanAdapter.ItemHolder>(
+    AdapterDiff()
+) {
 
     var currentSelection: PurchasePlanItem? = null
 
@@ -188,8 +217,8 @@ class PurchasePlanAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(item: PurchasePlanItem) {
             with(binding) {
-                txtTitle.text = item.title
-                txtPrice.text = item.price
+                txtTitle.text = "${item.price}/${item.title}"
+                txtPrice.text = item.description
                 root.setOnClickListener {
                     currentSelection?.isSelected = false
                     currentList.indexOf(currentSelection).takeIf { it >= 0 }

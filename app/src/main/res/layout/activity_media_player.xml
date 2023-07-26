@@ -24,13 +24,4 @@
             app:shutter_background_color="#1c1c1c" />
     </androidx.media3.ui.AspectRatioFrameLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bt_play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Play"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/container_media3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

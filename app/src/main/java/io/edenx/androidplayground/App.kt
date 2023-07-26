@@ -49,6 +49,37 @@ class App : Application(), Application.ActivityLifecycleCallbacks, LifecycleObse
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         fetchFRC()
         appOpenAdManager = AppOpenAdManager()
+        //checkPurchase()
+    }
+
+    private fun checkPurchase() {
+        billingUtil.connectToPlayStore(
+            onConnected = {
+//                billingUtil.queryPurchases(BillingClient.ProductType.SUBS) { purchaseList ->
+//                    if (purchaseList.isEmpty()) sharedPrefUtil.setIsBillingPurchased(false)
+//                    purchaseList.forEach {
+//                        billingUtil.acknowledgePurchase(
+//                            purchase = it,
+//                            onPurchaseSucceed = {
+//                                Log.d(BillingUtil.tag, "Acknowledge existing purchase ok")
+//                                sharedPrefUtil.setIsBillingPurchased(true)
+//                            },
+//                            onPurchaseFailed = {
+//                                Log.d(BillingUtil.tag, "Acknowledge existing purchase failed")
+//                                sharedPrefUtil.setIsBillingPurchased(false)
+//                            },
+//                            onAcknowledged = {
+//                                sharedPrefUtil.setIsBillingPurchased(true)
+//                            }
+//                        )
+//                    }
+//                    appOpenAdManager = AppOpenAdManager()
+//                }
+            },
+            onDisconnected = {
+                appOpenAdManager = AppOpenAdManager()
+            }
+        )
     }
 
     private fun fetchFRC() {
@@ -129,11 +160,9 @@ class App : Application(), Application.ActivityLifecycleCallbacks, LifecycleObse
             isLoadingAd = true
             adUtil.loadAppOpenAd(
                 context = context,
-                fullAdId = "${Firebase.remoteConfig.getString(PUBLISHER_ID_KEY)}/${
-                    Firebase.remoteConfig.getString(
-                        APP_OPEN_AD_KEY
-                    )
-                }",
+                fullAdId = Firebase.remoteConfig.getString(
+                    APP_OPEN_AD_KEY
+                ),
                 mOnAdLoaded = {
                     appOpenAd = it
                     isLoadingAd = false

@@ -21,15 +21,9 @@ import com.google.android.play.core.install.model.UpdateAvailability
 import dagger.hilt.android.AndroidEntryPoint
 import io.edenx.androidplayground.BuildConfig
 import io.edenx.androidplayground.R
-import io.edenx.androidplayground.component.animation.AnimationActivity
 import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidplayground.component.billing.PurchaseActivity
 import io.edenx.androidplayground.component.camera.CameraActivity
-import io.edenx.androidplayground.component.connectivity.BluetoothConnectingActivity
-import io.edenx.androidplayground.component.connectivity.FileTransferActivity
-import io.edenx.androidplayground.component.media.MediaPlayerActivity
-import io.edenx.androidplayground.component.media.PlaylistActivity
-import io.edenx.androidplayground.component.nav.NavigationActivity
-import io.edenx.androidplayground.component.paging.PagingActivity
 import io.edenx.androidplayground.data.model.MenuItem
 import io.edenx.androidplayground.data.model.TypeMenu
 import io.edenx.androidplayground.databinding.ActivityMenuBinding
@@ -68,9 +62,7 @@ class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::infl
     }
 
     override fun setListener() {
-        binding.btVip.setOnClickListener {
-            purchaseLauncher.launch(Intent(this, PurchaseActivity::class.java))
-        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -106,14 +98,17 @@ class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::infl
 
     private fun loadScreen() {
         binding.txtTitle.text = "${if (BuildConfig.DEBUG) "Debug" else ""} Android Playground"
+        Glide.with(this)
+            .load("https://i.seadn.io/gae/TrLc8DM_fNZkyGU5XSLZ4rlYauAX7HmxjSXzBsstP17M6hAPZ1OIIwXI02KnPrrDskKqrqqRUY9klB5kcT9ulJIjrrN-_tfBawjbBw?auto=format&dpr=1&w=1000")
+            .into(binding.btVip)
         binding.rvMenu.apply {
             adapter = MyMenuAdapter(mItems = provideMenuItems()) { item, view ->
                 openSample(item)
             }
             layoutManager = GridLayoutManager(this.context, 2, RecyclerView.VERTICAL, false)
-            addItemDecoration(DmitrysGridItemDecoration(24, 2))
+            addItemDecoration(DmitrysGridItemDecoration(32, 2))
         }
-        startActivity(Intent(this, PlaylistActivity::class.java))
+        //startActivity(Intent(this, PlaylistActivity::class.java))
     }
 
     private fun openSample(item: MenuItem) {
@@ -132,16 +127,11 @@ class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::infl
         }
     }
 
-    private fun provideMenuItems() = listOf(
-        MenuItem(1, type = TypeMenu.BILLING),
-        MenuItem(2, type = TypeMenu.PAGING),
-        MenuItem(3, type = TypeMenu.NAV),
-        MenuItem(4, type = TypeMenu.ANIMATION),
-        MenuItem(5, type = TypeMenu.IMG_LABELING),
-        MenuItem(6, type = TypeMenu.QR_DETECTING),
-        MenuItem(7, type = TypeMenu.FILE_TRANSFERRING),
-        MenuItem(8, type = TypeMenu.BLUETOOTH_DISCOVERY),
-    )
+    private fun provideMenuItems(): List<MenuItem> {
+        return TypeMenu.values().mapIndexed { index, typeMenu ->
+            MenuItem(index, type = typeMenu, bgColor = generateRandomColor())
+        }
+    }
 }
 
 class MyMenuAdapter(
@@ -176,7 +166,7 @@ class MyMenuAdapter(
                     .into(imgMenu)
 
                 txtMenuName.text = item.name.trim().ifBlank { item.type.prompt }
-
+                item.bgColor?.let { cv.setCardBackgroundColor(it) }
                 root.setOnClickListener {
                     onItemClick(item, it)
                 }
