@@ -73,7 +73,7 @@
             android:name=".component.paging.PagingActivity"
             android:exported="false" />
         <activity
-            android:name=".component.PurchaseActivity"
+            android:name=".component.billing.PurchaseActivity"
             android:exported="false" />
         <activity
             android:name=".component.MenuActivity"

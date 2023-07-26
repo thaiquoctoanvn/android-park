@@ -6,7 +6,14 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import com.android.billingclient.api.*
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -58,34 +65,78 @@ class BillingUtil @Inject constructor(
 
     fun queryProductDetails(
         productIdAndTypeList: Map<String, String>,
-        onQueryResponded: (BillingResult, List<ProductDetails>) -> Unit
+        onQueryResponded: (List<ProductDetails>) -> Unit
     ) {
-        val queryProductDetailsParams =
-            QueryProductDetailsParams.newBuilder()
-                .setProductList(productIdAndTypeList.map {
-                    QueryProductDetailsParams.Product.newBuilder()
-                        .setProductId(it.key)
-                        .setProductType(it.value)
-                        .build()
-                })
-                .build()
-        billingClient?.queryProductDetailsAsync(queryProductDetailsParams) { billingResult, productDetailsList ->
-            Log.d(tag, "queryProductDetailsAsync: ${billingResult.responseCode}")
-            Handler(Looper.getMainLooper()).post {
-                onQueryResponded(billingResult, productDetailsList)
+        CoroutineScope(Dispatchers.IO).launch {
+            combine(flows = productIdAndTypeList.entries.groupBy { it.value }.map {
+                callbackFlow<List<ProductDetails>> {
+                    val queryProductDetailsParams =
+                        QueryProductDetailsParams.newBuilder()
+                            .setProductList(it.value.map {
+                                QueryProductDetailsParams.Product.newBuilder()
+                                    .setProductId(it.key)
+                                    .setProductType(it.value)
+                                    .build()
+                            })
+                            .build()
+                    billingClient?.queryProductDetailsAsync(queryProductDetailsParams) { billingResult, productDetailsList ->
+                        Log.d(tag, "queryProductDetailsAsync: ${billingResult.responseCode}")
+                        trySend(productDetailsList)
+                    }
+                    awaitClose()
+                }.catch {
+                    it.printStackTrace()
+                }
+            }, transform = {
+                it.flatMap { it }
+            }).collectLatest {
+                withContext(Dispatchers.Main) {
+                    onQueryResponded(it)
+                }
             }
         }
+
+
+//        val queryProductDetailsParams =
+//            QueryProductDetailsParams.newBuilder()
+//                .setProductList(productIdAndTypeList.map {
+//                    QueryProductDetailsParams.Product.newBuilder()
+//                        .setProductId(it.key)
+//                        .setProductType(it.value)
+//                        .build()
+//                })
+//                .build()
+//        billingClient?.queryProductDetailsAsync(queryProductDetailsParams) { billingResult, productDetailsList ->
+//            Log.d(tag, "queryProductDetailsAsync: ${billingResult.responseCode}")
+//            Handler(Looper.getMainLooper()).post {
+//                onQueryResponded(billingResult, productDetailsList)
+//            }
+//        }
     }
 
     fun queryPurchases(
-        productType: String,
-        onQueryResponded: (BillingResult, List<Purchase>) -> Unit
+        vararg productType: String,
+        onQueryResponded: (Map<String, List<Purchase>>) -> Unit
     ) {
-        billingClient?.queryPurchasesAsync(
-            QueryPurchasesParams.newBuilder().setProductType(productType).build()
-        ) { billingResult, purchaseList ->
-            Handler(Looper.getMainLooper()).post {
-                onQueryResponded(billingResult, purchaseList)
+        CoroutineScope(Dispatchers.IO).launch {
+            combine(flows = productType.map {
+                callbackFlow<Pair<String, List<Purchase>>> {
+                    billingClient?.queryPurchasesAsync(
+                        QueryPurchasesParams.newBuilder().setProductType(it).build()
+                    ) { billingResult, purchaseList ->
+                        Log.d(tag, "queryProductDetailsAsync: ${billingResult.responseCode}")
+                        trySend(Pair(it, purchaseList))
+                    }
+                    awaitClose()
+                }.catch {
+                    it.printStackTrace()
+                }
+            }, transform = {
+                it.associate { it.first to it.second }
+            }).collectLatest {
+                withContext(Dispatchers.Main) {
+                    onQueryResponded(it)
+                }
             }
         }
     }
@@ -108,6 +159,26 @@ class BillingUtil @Inject constructor(
         }
 
         return billingClient?.launchBillingFlow(activity, billingFlowParams.build())
+    }
+
+    // For product
+    fun consumePurchase(
+        purchase: Purchase,
+        onPurchaseSucceed: (BillingResult, String) -> Unit = { _, _ -> },
+        onPurchaseFailed: (BillingResult) -> Unit = {},
+        onNotPurchasedYet: (Purchase) -> Unit = {},
+        onConsumed: (Purchase) -> Unit = {}
+    ) {
+        val consumeParams =
+            ConsumeParams.newBuilder()
+                .setPurchaseToken(purchase.purchaseToken)
+                .build()
+        billingClient?.consumeAsync(consumeParams) { billingResult, purchaseToken ->
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) onPurchaseSucceed(
+                billingResult, purchaseToken
+            )
+            else onPurchaseFailed(billingResult)
+        }
     }
 
     // For subs

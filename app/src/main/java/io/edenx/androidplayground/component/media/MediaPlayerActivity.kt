@@ -61,6 +61,7 @@ class MediaPlayerActivity :
                     super.onPlayerError(error)
                 }
             })
+            it.playWhenReady = true
         }
     }
 

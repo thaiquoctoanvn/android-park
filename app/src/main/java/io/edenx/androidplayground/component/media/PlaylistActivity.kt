@@ -1,12 +1,16 @@
 package io.edenx.androidplayground.component.media
 
+import android.Manifest
 import android.content.ComponentName
 import android.content.ContentUris
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
@@ -31,6 +35,19 @@ class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>(ActivityPlaylistB
     private lateinit var browserFuture: ListenableFuture<MediaBrowser>
     private val browser: MediaBrowser?
         get() = if (browserFuture.isDone) browserFuture.get() else null
+    private val audioItems = mutableListOf<MediaItem>()
+    private val permissionRequired = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        arrayOf(Manifest.permission.READ_MEDIA_AUDIO)
+    } else arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    private val multiplePermissionRequest =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+            val isAllPermissionGrant = it.entries.all { permission ->
+                permission.value
+            }
+            if (isAllPermissionGrant) {
+                displayPlaylist()
+            }
+        }
 
     override fun onViewCreated() {
         Glide.with(this)
@@ -39,7 +56,11 @@ class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>(ActivityPlaylistB
             .into(binding.imgPlaylist)
         binding.rvPlaylist.apply {
             playlistAdapter = PlaylistAdapter() { item, view ->
-
+                audioItems.find { it.mediaId == item.id }?.let {
+                    browser?.setMediaItem(it)
+                    browser?.prepare()
+                    startActivity(Intent(this@PlaylistActivity, MediaPlayerActivity::class.java))
+                }
             }
             adapter = playlistAdapter
             layoutManager = LinearLayoutManager(this.context)
@@ -67,26 +88,31 @@ class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>(ActivityPlaylistB
             )
                 .buildAsync()
         browserFuture.addListener({
-            displayPlaylist()
+            if (permissionRequired.all { checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED }) {
+                displayPlaylist()
+            } else multiplePermissionRequest.launch(permissionRequired)
+
         }, ContextCompat.getMainExecutor(this))
     }
 
     override fun setListener() {
         binding.btPlayAll.setOnClickListener {
+            browser?.setMediaItems(audioItems)
             browser?.prepare()
             startActivity(Intent(this, MediaPlayerActivity::class.java))
         }
     }
 
     private fun displayPlaylist() {
-        val items = fetchLocalAudio()
-        playlistAdapter.submitList(items.map {
+
+        audioItems.clear()
+        audioItems.addAll(fetchLocalAudio())
+        playlistAdapter.submitList(audioItems.map {
             SimpleItem(
                 id = it.mediaId,
                 title = it.mediaMetadata.title.toString()
             )
         })
-        browser?.setMediaItems(fetchLocalAudio())
     }
 
     private fun fetchLocalAudio(): MutableList<MediaItem> {
@@ -153,6 +179,9 @@ class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>(ActivityPlaylistB
             fun bindData(item: SimpleItem) {
                 with(binding) {
                     txt.text = item.title
+                    root.setOnClickListener {
+                        onItemClick(item, it)
+                    }
                 }
             }
         }
