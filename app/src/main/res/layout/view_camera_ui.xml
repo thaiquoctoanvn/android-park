@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/camera_ui_container"
-    android:layoutDirection="ltr"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layoutDirection="ltr">
 
     <!-- Camera control and gallery buttons -->
-    <ImageButton
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/camera_switch_button"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="92dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_marginStart="32dp"
-        android:padding="4dp"
+        android:padding="8dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_baseline_cameraswitch_24"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/camera_capture_button"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/camera_capture_button"
+        app:srcCompat="@drawable/baseline_flip_camera_android_24" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/camera_capture_button"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
-        android:layout_marginBottom="80dp"
-        android:scaleType="fitCenter"
-        app:shapeAppearanceOverlay="@style/shapeImageViewStyle50"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="56dp"
         android:background="#ffffff"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:shapeAppearanceOverlay="@style/shapeImageViewStyle50" />
 
-    <ImageButton
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/photo_view_button"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="92dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_marginEnd="32dp"
-        android:padding="16dp"
+        android:padding="8dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_baseline_photo_24"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/camera_capture_button"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/camera_capture_button"
+        app:srcCompat="@drawable/ic_baseline_photo_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
