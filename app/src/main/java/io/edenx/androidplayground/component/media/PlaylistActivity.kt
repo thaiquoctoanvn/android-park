@@ -28,6 +28,7 @@ import io.edenx.androidplayground.component.base.BaseActivity
 import io.edenx.androidplayground.data.model.SimpleItem
 import io.edenx.androidplayground.databinding.ActivityPlaylistBinding
 import io.edenx.androidplayground.databinding.ItemTextBinding
+import io.edenx.androidplayground.ext.requestMultiplePermissions
 
 class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>(ActivityPlaylistBinding::inflate) {
 
@@ -39,15 +40,6 @@ class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>(ActivityPlaylistB
     private val permissionRequired = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         arrayOf(Manifest.permission.READ_MEDIA_AUDIO)
     } else arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    private val multiplePermissionRequest =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-            val isAllPermissionGrant = it.entries.all { permission ->
-                permission.value
-            }
-            if (isAllPermissionGrant) {
-                displayPlaylist()
-            }
-        }
 
     override fun onViewCreated() {
         Glide.with(this)
@@ -88,10 +80,9 @@ class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>(ActivityPlaylistB
             )
                 .buildAsync()
         browserFuture.addListener({
-            if (permissionRequired.all { checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED }) {
-                displayPlaylist()
-            } else multiplePermissionRequest.launch(permissionRequired)
-
+            requestMultiplePermissions(permissionRequired) {
+                if (it.all { it.value }) displayPlaylist()
+            }
         }, ContextCompat.getMainExecutor(this))
     }
 

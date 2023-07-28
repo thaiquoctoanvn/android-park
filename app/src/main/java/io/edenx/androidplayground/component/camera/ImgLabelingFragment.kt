@@ -32,6 +32,8 @@ import io.edenx.androidplayground.R
 import io.edenx.androidplayground.component.base.BaseFragment
 import io.edenx.androidplayground.databinding.FragmentImgLabelingBinding
 import io.edenx.androidplayground.databinding.ViewCameraUiBinding
+import io.edenx.androidplayground.ext.launchImagePicker
+import io.edenx.androidplayground.ext.requestMultiplePermissions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
@@ -48,15 +50,15 @@ class ImgLabelingFragment : BaseFragment<FragmentImgLabelingBinding>(FragmentImg
     private val permissionsRequired = arrayOf(Manifest.permission.CAMERA, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) Manifest.permission.READ_MEDIA_IMAGES else Manifest.permission.READ_EXTERNAL_STORAGE)
     private val imageTypeNeed = arrayOf("JPG", "PNG")
 
-    private val multiplePermissionRequest =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-            val isAllPermissionGrant = it.entries.all { permission ->
-                permission.value
-            }
-            if (isAllPermissionGrant) {
-                updateCameraUi()
-            }
-        }
+//    private val multiplePermissionRequest =
+//        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+//            val isAllPermissionGrant = it.entries.all { permission ->
+//                permission.value
+//            }
+//            if (isAllPermissionGrant) {
+//                updateCameraUi()
+//            }
+//        }
 
     private val displayManager by lazy { requireContext().getSystemService(Context.DISPLAY_SERVICE) as DisplayManager }
 
@@ -89,7 +91,14 @@ class ImgLabelingFragment : BaseFragment<FragmentImgLabelingBinding>(FragmentImg
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         displayManager.registerDisplayListener(displayListener, null)
-        requestPermissions()
+        requireActivity().requestMultiplePermissions(permissionsRequired) {
+            if (it.values.all { it }) {
+                updateCameraUi()
+            }
+        }
+//        requestPermissions() {
+//            updateCameraUi()
+//        }
     }
 
     override fun onDestroyView() {
@@ -106,14 +115,14 @@ class ImgLabelingFragment : BaseFragment<FragmentImgLabelingBinding>(FragmentImg
         updateCameraSwitchButton()
     }
 
-    private fun requestPermissions() {
-        val result = permissionsRequired.all {
-            ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
-        }
-        if (result) {
-            updateCameraUi()
-        } else multiplePermissionRequest.launch(permissionsRequired)
-    }
+//    private fun requestPermissions(then: () -> Unit = {}) {
+//        val result = permissionsRequired.all {
+//            ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
+//        }
+//        if (result) {
+//            then()
+//        } else multiplePermissionRequest.launch(permissionsRequired)
+//    }
 
     private fun setUpCamera() {
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -141,6 +150,8 @@ class ImgLabelingFragment : BaseFragment<FragmentImgLabelingBinding>(FragmentImg
         binding.ibClosePreview.setOnClickListener {
             binding.sivPreview.setImageDrawable(null)
             binding.groupPreview.visibility = View.GONE
+            binding.pvCamera.visibility = View.VISIBLE
+            cameraUiContainerBinding?.root?.visibility = View.VISIBLE
         }
     }
 
@@ -251,13 +262,20 @@ class ImgLabelingFragment : BaseFragment<FragmentImgLabelingBinding>(FragmentImg
                                 // set latest image to thumbnail
                                 lifecycleScope.launch(Dispatchers.Main) {
                                     binding.pvCamera.visibility = View.GONE
+                                    cameraUiContainerBinding?.root?.visibility = View.GONE
                                     binding.groupPreview.visibility = View.VISIBLE
                                     Glide.with(requireContext())
                                         .load(outputFileResults.savedUri)
                                         .into(binding.sivPreview)
                                 }
-
-                                processImageLabelingFromCustomCamera()
+                                imageAnalysis?.let { mImageAnalysis ->
+                                    mImageAnalysis.setAnalyzer(cameraExecutor) { mImageProxy ->
+                                        mImageProxy.image?.let { image ->
+                                            val input = InputImage.fromMediaImage(image, mImageProxy.imageInfo.rotationDegrees)
+                                            processImageLabelingFromCustomCamera(input)
+                                        }
+                                    }
+                                }
                             }
 
                             override fun onError(exception: ImageCaptureException) {
@@ -280,6 +298,23 @@ class ImgLabelingFragment : BaseFragment<FragmentImgLabelingBinding>(FragmentImg
                 else CameraSelector.LENS_FACING_FRONT
 
                 bindCameraUseCase()
+            }
+            cameraUiContainerBinding?.photoViewButton?.setOnClickListener {
+                requireActivity().requestMultiplePermissions(permissionsRequired) {
+                    if (it.values.all { it }) {
+                        requireActivity().launchImagePicker(onPick = {
+                            it?.data?.let {
+                                binding.pvCamera.visibility = View.GONE
+                                cameraUiContainerBinding?.root?.visibility = View.GONE
+                                binding.groupPreview.visibility = View.VISIBLE
+                                Glide.with(requireContext())
+                                    .load(it)
+                                    .into(binding.sivPreview)
+                                processImageLabelingFromCustomCamera(InputImage.fromFilePath(requireContext(), it))
+                            }
+                        })
+                    }
+                }
             }
             //binding.pvCamera.implementationMode = PreviewView.ImplementationMode.COMPATIBLE
             setUpCamera()
@@ -327,24 +362,16 @@ class ImgLabelingFragment : BaseFragment<FragmentImgLabelingBinding>(FragmentImg
     }
 
     // Image labeling
-    @SuppressLint("UnsafeOptInUsageError")
-    private fun processImageLabelingFromCustomCamera() {
-        imageAnalysis?.let { mImageAnalysis ->
-            mImageAnalysis.setAnalyzer(cameraExecutor) { mImageProxy ->
-                mImageProxy.image?.let { image ->
-                    val input = InputImage.fromMediaImage(image, mImageProxy.imageInfo.rotationDegrees)
-                    ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
-                        .process(input)
-                        .addOnCompleteListener { labels ->
-                            Toast.makeText(
-                                requireContext(),
-                                "Labels detected: ${labels.result.joinToString(separator = ", ") { it.text }}",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                        .addOnFailureListener { e -> e.printStackTrace() }
-                }
+    private fun processImageLabelingFromCustomCamera(inputImage: InputImage) {
+        ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
+            .process(inputImage)
+            .addOnCompleteListener { labels ->
+                Toast.makeText(
+                    requireContext(),
+                    "Labels detected: ${labels.result.joinToString(separator = ", ") { it.text }}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
-        }
+            .addOnFailureListener { e -> e.printStackTrace() }
     }
 }
