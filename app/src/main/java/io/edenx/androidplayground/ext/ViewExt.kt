@@ -6,6 +6,7 @@ import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
@@ -127,6 +128,14 @@ fun View.setOnSoundClickListener(
             onClick(it)
         }
         lastClickTime = SystemClock.elapsedRealtime()
+    }
+}
+
+fun View.setGradientBackground(resColors: Array<Int>, orientation: GradientDrawable.Orientation = GradientDrawable.Orientation.TOP_BOTTOM, gradientType: Int = GradientDrawable.LINEAR_GRADIENT) {
+    background = GradientDrawable().apply {
+        this.orientation = orientation
+        //this.gradientType = gradientType
+        this.colors = resColors.toIntArray()
     }
 }
 
