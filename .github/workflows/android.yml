@@ -1,0 +1,64 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+
+  deploy:
+   name: Deploy on branch Develop
+   needs: [ build ]
+   runs-on: ubuntu-latest
+   steps:
+   - uses: actions/checkout@v2
+ 
+   - name: Set up ruby env
+     uses: ruby/setup-ruby@v1
+     with:
+       ruby-version: 2.7.2
+       bundler-cache: true
+ 
+   - name: Run tests
+     run: bundle exec fastlane android test
+ 
+   - name: Decode Keystore File
+     uses: timheuer/base64-to-file@v1
+     id: android_keystore
+     with:
+       fileName: "android_keystore.keystore"
+       encodedString: ${{ secrets.KEYSTORE_FILE }}
+ 
+   - name: Build & deploy Android release
+     run: bundle exec fastlane android deploy
+     env:
+       KEYSTORE_FILE: ${{ steps.android_keystore.outputs.filePath }}
+       KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+       KEY_ALIAS: ${{ secrets.KEY_ALIAS}}
+       KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+ 
+   - name: Upload build artifacts
+     uses: actions/upload-artifact@v2
+     with:
+       name: assets
+       path: |
+         ${{ github.workspace }}/app/build/outputs/bundle/release
+
+   - name: Grant execute permission for gradlew
+     run: chmod +x gradlew
+   - name: Build with Gradle
+     run: ./gradlew build
