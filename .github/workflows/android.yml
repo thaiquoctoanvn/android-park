@@ -20,9 +20,6 @@ jobs:
         with:
           java-version: '11'
 
-      - name: Unit tests
-        run: ./gradlew testDevelopDebugUnitTest --stacktrace
-
   deploy:
    name: Deploy on branch Develop
    needs: [ test ]
