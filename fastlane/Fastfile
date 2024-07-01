@@ -38,7 +38,16 @@ platform :android do
 
   desc "My awesome app"
     lane :distribute_firebase do
-        gradle(task: "clean assembleRelease")
+        gradle(
+              task: "bundle", # or "assemble", if you want to build an APK
+              build_type: "release",
+              properties: {
+                "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
+                "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
+                "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+                "android.injected.signing.key.password" => ENV["KEY_PASSWORD"],
+              }
+            )
         # build_android_app is a built-in fastlane action.
         firebase_app_distribution(
             app: "1:76588704604:android:66b9c419014dc4c62a5799"
