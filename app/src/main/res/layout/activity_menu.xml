@@ -23,15 +23,16 @@
             android:layout_width="@dimen/dp_32"
             android:layout_height="@dimen/dp_32"
             android:layout_gravity="start|center_vertical"
-            app:srcCompat="@drawable/settings" />
+            app:srcCompat="@drawable/settings"
+            android:visibility="gone"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:text="AI Assistant"
-            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_20"
             android:textStyle="bold" />
@@ -40,10 +41,10 @@
             android:id="@+id/bt_vip"
             android:layout_width="@dimen/dp_40"
             android:layout_height="@dimen/dp_40"
+            android:scaleType="centerCrop"
             android:background="#7f000000"
             android:src="@drawable/ic_diamond_premium"
             android:layout_gravity="end|center_vertical"
-            app:contentPadding="@dimen/dp_4"
             app:shapeAppearanceOverlay="@style/shapeImageViewStyle50" />
     </FrameLayout>
 
@@ -67,7 +68,8 @@
             <FrameLayout
                 android:id="@+id/tl"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
