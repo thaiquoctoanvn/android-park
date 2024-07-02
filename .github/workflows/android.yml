@@ -43,4 +43,4 @@ jobs:
        run: chmod +x gradlew
 
      - name: Upload APK
-       run: fastlane android distribute_firebase
+       run: bundle exec fastlane distribute_firebase
