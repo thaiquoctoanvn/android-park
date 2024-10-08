@@ -22,10 +22,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.edenx.androidplayground.BuildConfig
 import io.edenx.androidplayground.R
 import io.edenx.androidplayground.component.base.BaseActivity
-import io.edenx.androidplayground.component.billing.PurchaseActivity
 import io.edenx.androidplayground.component.camera.CameraActivity
 import io.edenx.androidplayground.data.model.MenuItem
-import io.edenx.androidplayground.data.model.TypeMenu
+import io.edenx.androidplayground.data.TypeMenu
 import io.edenx.androidplayground.databinding.ActivityMenuBinding
 import io.edenx.androidplayground.databinding.ItemMenuBinding
 import io.edenx.androidplayground.util.*
