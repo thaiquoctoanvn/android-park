@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".ui.SleepFragment">
+    >
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 app:contentScrim="@color/white"
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed"
                 app:titleCollapseMode="fade"
-                app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle" 
+                app:expandedTitleTextAppearance="@style/AlertDialogTitleTextStyle"
                 app:title="Collapsed title"
                 app:titleEnabled="false">
 
@@ -39,7 +39,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/cover"
+                        android:src="@mipmap/ic_launcher"
                         app:layout_constraintDimensionRatio="H,4:1"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,7 +66,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/cover" />
+                            android:src="@mipmap/ic_launcher" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -118,7 +118,7 @@
                     android:layout_height="?attr/actionBarSize"
                     app:contentInsetStart="0dp"
                     android:textAlignment="center"
-                    app:title="@string/sleep_title"
+                    app:title="Title"
                     app:layout_collapseMode="pin">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -142,7 +142,7 @@
                                 android:layout_height="match_parent"
                                 android:background="#99000000"
                                 android:scaleType="centerInside"
-                                android:src="@drawable/ic_baseline_settings_24"
+                                android:src="@mipmap/ic_launcher"
                                 app:tint="@color/white" />
                         </androidx.cardview.widget.CardView>
 
@@ -171,37 +171,37 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@color/blue_dianne" />
+                    android:background="#000000" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@color/blue_dianne" />
+                    android:background="#000000" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@color/blue_dianne" />
+                    android:background="#000000" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@color/blue_dianne" />
+                    android:background="#000000" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@color/blue_dianne" />
+                    android:background="#000000" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@color/blue_dianne" />
+                    android:background="#000000" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@color/blue_dianne" />
+                    android:background="#000000" />
 
                 <View
                     android:layout_width="match_parent"

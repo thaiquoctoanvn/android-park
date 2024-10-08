@@ -128,7 +128,7 @@ dependencies {
 
     //implementation("com.github.skydoves:transformationlayout:1.1.2")
 
-    implementation 'com.kaopiz:kprogresshud:1.2.0'
+    //implementation 'com.kaopiz:kprogresshud:1.2.0'
 
     implementation 'com.google.zxing:core:3.5.1'
 
