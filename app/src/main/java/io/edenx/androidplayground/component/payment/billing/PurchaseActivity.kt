@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.component.billing
+package io.edenx.androidplayground.component.payment.billing
 
 import android.util.Log
 import android.view.LayoutInflater
