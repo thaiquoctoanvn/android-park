@@ -126,4 +126,8 @@ object ApplicationModule {
     @Singleton
     @Provides
     fun provideBillingUtil(@ApplicationContext applicationContext: Context, listenerImpl: PurchasesUpdatedListenerImpl) = BillingUtil(applicationContext, listenerImpl)
+
+    @Singleton
+    @Provides
+    fun provideGooglePayUtil(@ApplicationContext applicationContext: Context) = GooglePayUtil(applicationContext)
 }
