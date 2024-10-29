@@ -44,6 +44,9 @@
         tools:replace="android:label"
         tools:targetApi="31">
         <activity
+            android:name=".component.payment.googlepay.GooglePayActivity"
+            android:exported="false" />
+        <activity
             android:name=".component.backstack.TestLaunchFlagActivity"
             android:exported="false" />
         <activity
@@ -80,7 +83,7 @@
             android:name=".component.paging.PagingActivity"
             android:exported="false" />
         <activity
-            android:name=".component.billing.PurchaseActivity"
+            android:name=".component.payment.billing.PurchaseActivity"
             android:exported="false" />
         <activity
             android:name=".component.MenuActivity"
@@ -96,6 +99,10 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
+
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
 
         <service
             android:name=".component.media.Media3PlaybackService"
