@@ -113,22 +113,12 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
-    implementation 'com.airbnb.android:lottie:5.2.0'
-
-    implementation 'com.google.android.flexbox:flexbox:3.0.0'
-
     implementation 'com.github.bumptech.glide:glide:4.14.2'
-
-    implementation "com.github.skydoves:balloon:1.4.8"
 
     implementation "com.github.skydoves:retrofit-adapters-result:1.0.6"
     implementation 'com.github.mrmike:ok2curl:0.8.0'
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-
-    //implementation("com.github.skydoves:transformationlayout:1.1.2")
-
-    //implementation 'com.kaopiz:kprogresshud:1.2.0'
 
     implementation 'com.google.zxing:core:3.5.1'
 
@@ -141,7 +131,6 @@ dependencies {
     implementation "androidx.media3:media3-ui:$media3_version"
     // For exposing and controlling media sessions
     implementation "androidx.media3:media3-session:$media3_version"
-    implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
     implementation 'com.google.android.gms:play-services-wallet:19.4.0'
 
     testImplementation 'junit:junit:4.13.2'

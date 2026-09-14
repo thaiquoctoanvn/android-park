@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.commit
 import io.edenx.androidplayground.R
-import io.edenx.androidplayground.component.animation.AddToCartFragment
 import io.edenx.androidplayground.component.base.BaseActivity
 import io.edenx.androidplayground.databinding.ActivityCameraBinding
 

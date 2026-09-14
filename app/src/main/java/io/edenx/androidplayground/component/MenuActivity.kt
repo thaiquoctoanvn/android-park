@@ -6,19 +6,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.UpdateAvailability
-import dagger.hilt.android.AndroidEntryPoint
 import io.edenx.androidplayground.BuildConfig
 import io.edenx.androidplayground.R
 import io.edenx.androidplayground.component.base.BaseActivity
@@ -28,26 +24,8 @@ import io.edenx.androidplayground.data.TypeMenu
 import io.edenx.androidplayground.databinding.ActivityMenuBinding
 import io.edenx.androidplayground.databinding.ItemMenuBinding
 import io.edenx.androidplayground.util.*
-import javax.inject.Inject
 
-@AndroidEntryPoint
 class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::inflate) {
-
-    @Inject
-    lateinit var sharedPrefUtil: SharedPrefUtil
-
-    @Inject
-    lateinit var adUtil: AdUtil
-
-    @Inject
-    lateinit var billingUtil: BillingUtil
-
-    private var bannerAdView: AdView? = null
-    private var interstitialAd: InterstitialAd? = null
-    private val purchaseLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-
-        }
 
     private val appUpdateManager by lazy { AppUpdateManagerFactory.create(this) }
 

@@ -15,17 +15,17 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- need for getting MAC address -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <uses-feature
         android:name="android.hardware.bluetooth"
-        android:required="true" />
+        android:required="false" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
