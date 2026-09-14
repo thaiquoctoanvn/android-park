@@ -19,3 +19,12 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# ---------------------------------------------------------------------------
+# OkHttp: tham chieu cac TLS provider tuy chon khong co tren Android.
+# Khong co nhung rule nay thi `minifyReleaseWithR8` fail cung.
+# ---------------------------------------------------------------------------
+-dontwarn org.bouncycastle.jsse.**
+-dontwarn org.conscrypt.**
+-dontwarn org.openjsse.**
+-dontwarn okhttp3.internal.platform.**
