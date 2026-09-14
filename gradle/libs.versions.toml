@@ -1,0 +1,156 @@
+#
+# Single source of truth for every version in the build.
+# Also imported by build-logic/settings.gradle.kts, so the convention plugins
+# and the modules they configure can never drift apart.
+#
+[versions]
+# --- SDK / toolchain -------------------------------------------------------
+compileSdk               = "33"
+minSdk                   = "24"
+targetSdk                = "33"
+
+# --- Build plugins ---------------------------------------------------------
+agp                      = "8.7.3"
+kotlin                   = "2.0.21"
+# KSP is versioned as <kotlin>-<kspRelease>; it MUST track `kotlin` exactly.
+ksp                      = "2.0.21-1.0.28"
+hilt                     = "2.52"
+googleServices           = "4.4.2"
+crashlyticsPlugin        = "2.9.9"
+
+# --- AndroidX --------------------------------------------------------------
+androidxActivity         = "1.7.1"
+androidxAppCompat        = "1.5.1"
+androidxAnnotation       = "1.7.1"
+androidxCamera           = "1.2.0-alpha02"
+androidxConstraintLayout = "2.1.4"
+androidxCore             = "1.7.0"
+androidxFragment         = "1.5.7"
+androidxLifecycle        = "2.6.1"
+androidxMedia3           = "1.1.0"
+androidxNavigation       = "2.4.2"
+androidxPaging           = "3.1.1"
+androidxRecyclerView     = "1.2.1"
+
+# --- Google / Play ---------------------------------------------------------
+billing                  = "6.0.0"
+firebaseBom              = "31.0.2"
+material                 = "1.7.0"
+mlkitBarcodeScanning     = "17.1.0"
+mlkitImageLabeling       = "17.0.7"
+playAppUpdate            = "2.0.1"
+playServicesAds          = "22.0.0"
+playServicesWallet       = "19.4.0"
+zxing                    = "3.5.1"
+
+# --- Network / images ------------------------------------------------------
+# Pinned: ViewExt.kt and BillingUtil.kt use `combine(flows = ...).collect()`
+# and `import kotlinx.coroutines.flow.collect`, both removed in 1.7+.
+coroutines               = "1.6.4"
+glide                    = "4.14.2"
+ok2curl                  = "0.8.0"
+okhttp                   = "4.10.0"
+# converter-gson 2.6.2 used to drag in Retrofit 2.6.2, but
+# retrofit-adapters-result:1.0.6 is built against 2.9.0. Pin both to 2.9.0.
+retrofit                 = "2.9.0"
+retrofitAdaptersResult   = "1.0.6"
+
+# --- Test ------------------------------------------------------------------
+androidxEspresso         = "3.5.0"
+androidxTestExtJunit     = "1.1.4"
+junit4                   = "4.13.2"
+
+[libraries]
+# --- Gradle plugin artifacts: the compileOnly classpath of build-logic ------
+android-gradlePlugin = { module = "com.android.tools.build:gradle",            version.ref = "agp" }
+kotlin-gradlePlugin  = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin     = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+hilt-gradlePlugin    = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
+
+# --- AndroidX core / ui ----------------------------------------------------
+androidx-core-ktx         = { module = "androidx.core:core-ktx",                     version.ref = "androidxCore" }
+androidx-appcompat        = { module = "androidx.appcompat:appcompat",               version.ref = "androidxAppCompat" }
+androidx-annotation       = { module = "androidx.annotation:annotation",             version.ref = "androidxAnnotation" }
+androidx-activity-ktx     = { module = "androidx.activity:activity-ktx",             version.ref = "androidxActivity" }
+androidx-fragment-ktx     = { module = "androidx.fragment:fragment-ktx",             version.ref = "androidxFragment" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintLayout" }
+androidx-recyclerview     = { module = "androidx.recyclerview:recyclerview",         version.ref = "androidxRecyclerView" }
+material                  = { module = "com.google.android.material:material",       version.ref = "material" }
+
+# --- Lifecycle -------------------------------------------------------------
+androidx-lifecycle-runtime-ktx   = { module = "androidx.lifecycle:lifecycle-runtime-ktx",   version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
+androidx-lifecycle-livedata-ktx  = { module = "androidx.lifecycle:lifecycle-livedata-ktx",  version.ref = "androidxLifecycle" }
+androidx-lifecycle-process       = { module = "androidx.lifecycle:lifecycle-process",       version.ref = "androidxLifecycle" }
+
+# --- Navigation / paging ---------------------------------------------------
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidxNavigation" }
+androidx-navigation-ui-ktx       = { module = "androidx.navigation:navigation-ui-ktx",       version.ref = "androidxNavigation" }
+androidx-paging-runtime          = { module = "androidx.paging:paging-runtime",              version.ref = "androidxPaging" }
+
+# --- CameraX + ML Kit + zxing ----------------------------------------------
+androidx-camera-core      = { module = "androidx.camera:camera-core",       version.ref = "androidxCamera" }
+androidx-camera-camera2   = { module = "androidx.camera:camera-camera2",    version.ref = "androidxCamera" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle",  version.ref = "androidxCamera" }
+androidx-camera-view      = { module = "androidx.camera:camera-view",       version.ref = "androidxCamera" }
+mlkit-image-labeling      = { module = "com.google.mlkit:image-labeling",   version.ref = "mlkitImageLabeling" }
+mlkit-barcode-scanning    = { module = "com.google.mlkit:barcode-scanning", version.ref = "mlkitBarcodeScanning" }
+zxing-core                = { module = "com.google.zxing:core",             version.ref = "zxing" }
+
+# --- Media3 ----------------------------------------------------------------
+androidx-media3-exoplayer      = { module = "androidx.media3:media3-exoplayer",      version.ref = "androidxMedia3" }
+androidx-media3-exoplayer-dash = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "androidxMedia3" }
+androidx-media3-ui             = { module = "androidx.media3:media3-ui",             version.ref = "androidxMedia3" }
+androidx-media3-session        = { module = "androidx.media3:media3-session",        version.ref = "androidxMedia3" }
+
+# --- Firebase: versions come from the BOM, so intentionally version-less ----
+firebase-bom         = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics   = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-config      = { module = "com.google.firebase:firebase-config-ktx" }
+firebase-messaging   = { module = "com.google.firebase:firebase-messaging-ktx" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
+
+# --- Play services / billing -----------------------------------------------
+play-services-ads    = { module = "com.google.android.gms:play-services-ads",    version.ref = "playServicesAds" }
+play-services-wallet = { module = "com.google.android.gms:play-services-wallet", version.ref = "playServicesWallet" }
+play-app-update-ktx  = { module = "com.google.android.play:app-update-ktx",      version.ref = "playAppUpdate" }
+billing-ktx          = { module = "com.android.billingclient:billing-ktx",       version.ref = "billing" }
+
+# --- DI --------------------------------------------------------------------
+hilt-android  = { module = "com.google.dagger:hilt-android",  version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+
+# --- Network / images ------------------------------------------------------
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+retrofit-core              = { module = "com.squareup.retrofit2:retrofit",                  version.ref = "retrofit" }
+retrofit-converter-gson    = { module = "com.squareup.retrofit2:converter-gson",            version.ref = "retrofit" }
+retrofit-adapters-result   = { module = "com.github.skydoves:retrofit-adapters-result",     version.ref = "retrofitAdaptersResult" }
+okhttp-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor",         version.ref = "okhttp" }
+ok2curl                    = { module = "com.github.mrmike:ok2curl",                        version.ref = "ok2curl" }
+glide                      = { module = "com.github.bumptech.glide:glide",                  version.ref = "glide" }
+
+# --- Test ------------------------------------------------------------------
+junit4                      = { module = "junit:junit",                          version.ref = "junit4" }
+androidx-test-ext-junit     = { module = "androidx.test.ext:junit",              version.ref = "androidxTestExtJunit" }
+androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspresso" }
+
+[bundles]
+androidx-base = ["androidx-core-ktx", "androidx-appcompat", "material", "androidx-activity-ktx", "androidx-fragment-ktx", "androidx-constraintlayout"]
+lifecycle     = ["androidx-lifecycle-runtime-ktx", "androidx-lifecycle-viewmodel-ktx", "androidx-lifecycle-livedata-ktx"]
+navigation    = ["androidx-navigation-fragment-ktx", "androidx-navigation-ui-ktx"]
+camerax       = ["androidx-camera-core", "androidx-camera-camera2", "androidx-camera-lifecycle", "androidx-camera-view"]
+mlkit         = ["mlkit-image-labeling", "mlkit-barcode-scanning"]
+media3        = ["androidx-media3-exoplayer", "androidx-media3-exoplayer-dash", "androidx-media3-ui", "androidx-media3-session"]
+firebase      = ["firebase-analytics", "firebase-config", "firebase-messaging", "firebase-crashlytics"]
+retrofit      = ["retrofit-core", "retrofit-converter-gson", "retrofit-adapters-result", "okhttp-logging-interceptor", "ok2curl"]
+
+[plugins]
+android-application  = { id = "com.android.application",              version.ref = "agp" }
+android-library      = { id = "com.android.library",                  version.ref = "agp" }
+kotlin-android       = { id = "org.jetbrains.kotlin.android",         version.ref = "kotlin" }
+kotlin-jvm           = { id = "org.jetbrains.kotlin.jvm",             version.ref = "kotlin" }
+kotlin-compose       = { id = "org.jetbrains.kotlin.plugin.compose",  version.ref = "kotlin" }
+ksp                  = { id = "com.google.devtools.ksp",              version.ref = "ksp" }
+hilt                 = { id = "com.google.dagger.hilt.android",       version.ref = "hilt" }
+gms-google-services  = { id = "com.google.gms.google-services",       version.ref = "googleServices" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics",      version.ref = "crashlyticsPlugin" }
