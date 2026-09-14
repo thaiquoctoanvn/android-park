@@ -1,6 +1,5 @@
-package io.edenx.androidplayground.data.model
+package io.edenx.androidpark.menu
 
-import io.edenx.androidplayground.data.TypeMenu
 
 data class MenuItem(
     val id: Int,

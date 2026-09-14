@@ -1,4 +1,4 @@
-package io.edenx.androidplayground
+package io.edenx.androidpark
 
 import org.junit.Test
 

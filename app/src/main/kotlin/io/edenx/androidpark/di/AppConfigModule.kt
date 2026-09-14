@@ -1,11 +1,11 @@
-package io.edenx.androidplayground.di
+package io.edenx.androidpark.di
 
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.edenx.androidpark.core.common.AppConfig
-import io.edenx.androidplayground.BuildConfig
+import io.edenx.androidpark.BuildConfig
 import javax.inject.Inject
 import javax.inject.Singleton
 

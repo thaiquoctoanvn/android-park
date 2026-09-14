@@ -6,9 +6,7 @@ plugins {
 }
 
 android {
-    // Must stay io.edenx.androidplayground for now: every source file still
-    // lives in that package. The module split renames it to io.edenx.androidpark.
-    namespace = "io.edenx.androidplayground"
+    namespace = "io.edenx.androidpark"
 
     signingConfigs {
         create("release") {

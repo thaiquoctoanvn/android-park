@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.data
+package io.edenx.androidpark.menu
 
 import io.edenx.androidpark.feature.animation.AnimationActivity
 import io.edenx.androidpark.feature.backstack.BackStackActivity
