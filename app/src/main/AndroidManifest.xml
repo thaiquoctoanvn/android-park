@@ -46,12 +46,6 @@
             android:name=".component.payment.googlepay.GooglePayActivity"
             android:exported="false" />
         <activity
-            android:name=".component.backstack.TestLaunchFlagActivity"
-            android:exported="false" />
-        <activity
-            android:name=".component.backstack.BackStackActivity"
-            android:exported="false" />
-        <activity
             android:name=".component.media.PlaylistActivity"
             android:exported="false" />
         <activity
@@ -68,12 +62,6 @@
             android:exported="false" />
         <activity
             android:name=".component.animation.AnimationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".component.gesture.MultiTouchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".component.webview.WebViewActivity"
             android:exported="false" />
         <activity
             android:name=".component.nav.NavigationActivity"

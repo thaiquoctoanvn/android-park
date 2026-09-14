@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.component.webview
+package io.edenx.androidpark.feature.webview
 
 import android.graphics.Bitmap
 import android.net.Uri

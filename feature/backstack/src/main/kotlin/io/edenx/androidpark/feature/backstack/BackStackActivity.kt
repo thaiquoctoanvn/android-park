@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.component.backstack
+package io.edenx.androidpark.feature.backstack
 
 import android.content.Intent
 import android.view.View
@@ -6,8 +6,7 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import io.edenx.androidpark.core.ui.BaseActivity
-import io.edenx.androidplayground.data.ActivityLaunchFlag
-import io.edenx.androidplayground.databinding.ActivityBackStackBinding
+import io.edenx.androidpark.feature.backstack.databinding.ActivityBackStackBinding
 
 class BackStackActivity :
     BaseActivity<ActivityBackStackBinding>(ActivityBackStackBinding::inflate) {

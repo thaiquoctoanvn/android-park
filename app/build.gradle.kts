@@ -60,6 +60,10 @@ dependencies {
     implementation(project(":core:network"))
     implementation(project(":core:ui"))
 
+    implementation(project(":feature:webview"))
+    implementation(project(":feature:backstack"))
+    implementation(project(":feature:gesture"))
+
     implementation(libs.bundles.androidx.base)
     implementation(libs.bundles.lifecycle)
     implementation(libs.androidx.lifecycle.process)

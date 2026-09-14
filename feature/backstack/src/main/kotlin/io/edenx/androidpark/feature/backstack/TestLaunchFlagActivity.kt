@@ -1,10 +1,9 @@
-package io.edenx.androidplayground.component.backstack
+package io.edenx.androidpark.feature.backstack
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import io.edenx.androidplayground.R
 import io.edenx.androidpark.core.ui.BaseActivity
-import io.edenx.androidplayground.databinding.ActivityTestLaunchFlagBinding
+import io.edenx.androidpark.feature.backstack.databinding.ActivityTestLaunchFlagBinding
 
 class TestLaunchFlagActivity :
     BaseActivity<ActivityTestLaunchFlagBinding>(ActivityTestLaunchFlagBinding::inflate) {

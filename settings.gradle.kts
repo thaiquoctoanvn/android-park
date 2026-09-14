@@ -36,3 +36,7 @@ include(":core:designsystem")
 include(":core:model")
 include(":core:network")
 include(":core:ui")
+
+include(":feature:webview")
+include(":feature:backstack")
+include(":feature:gesture")
