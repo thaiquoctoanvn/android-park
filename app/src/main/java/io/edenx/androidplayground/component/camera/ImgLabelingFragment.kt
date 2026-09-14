@@ -29,11 +29,11 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabeling
 import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import io.edenx.androidplayground.R
-import io.edenx.androidplayground.component.base.BaseFragment
+import io.edenx.androidpark.core.ui.BaseFragment
 import io.edenx.androidplayground.databinding.FragmentImgLabelingBinding
 import io.edenx.androidplayground.databinding.ViewCameraUiBinding
-import io.edenx.androidplayground.ext.launchImagePicker
-import io.edenx.androidplayground.ext.requestMultiplePermissions
+import io.edenx.androidpark.core.ui.launchImagePicker
+import io.edenx.androidpark.core.ui.requestMultiplePermissions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File

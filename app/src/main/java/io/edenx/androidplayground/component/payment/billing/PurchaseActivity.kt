@@ -18,7 +18,7 @@ import io.edenx.androidpark.core.model.PurchasePlanItem
 import io.edenx.androidpark.core.model.SimpleProductItem
 import io.edenx.androidplayground.databinding.ActivityPurchaseBinding
 import io.edenx.androidplayground.databinding.ItemPurchasePlanBinding
-import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidplayground.util.*
 import javax.inject.Inject
 import io.edenx.androidpark.core.common.SharedPrefUtil

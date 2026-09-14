@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.edenx.androidplayground.R
-import io.edenx.androidplayground.component.base.BaseFragment
+import io.edenx.androidpark.core.ui.BaseFragment
 import io.edenx.androidplayground.databinding.FragmentFirstBinding
 
 class FirstFragment : BaseFragment<FragmentFirstBinding>(FragmentFirstBinding::inflate) {

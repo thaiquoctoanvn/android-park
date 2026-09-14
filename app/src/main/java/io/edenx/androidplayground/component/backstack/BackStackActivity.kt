@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidplayground.data.ActivityLaunchFlag
 import io.edenx.androidplayground.databinding.ActivityBackStackBinding
 

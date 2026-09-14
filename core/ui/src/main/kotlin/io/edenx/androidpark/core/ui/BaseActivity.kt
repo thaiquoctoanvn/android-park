@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.component.base
+package io.edenx.androidpark.core.ui
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewbinding.ViewBinding
-import io.edenx.androidplayground.R
 import io.edenx.androidpark.core.designsystem.R as DesignSystemR
 
 typealias ViewBindingType<T> = (LayoutInflater) -> T

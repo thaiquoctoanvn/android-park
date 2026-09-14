@@ -17,7 +17,7 @@ import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.UpdateAvailability
 import io.edenx.androidplayground.BuildConfig
 import io.edenx.androidplayground.R
-import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidplayground.component.camera.CameraActivity
 import io.edenx.androidplayground.data.model.MenuItem
 import io.edenx.androidplayground.data.TypeMenu
@@ -25,6 +25,7 @@ import io.edenx.androidplayground.databinding.ActivityMenuBinding
 import io.edenx.androidplayground.databinding.ItemMenuBinding
 import io.edenx.androidplayground.util.*
 import io.edenx.androidpark.core.common.generateRandomColor
+import io.edenx.androidpark.core.ui.DmitrysGridItemDecoration
 
 class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::inflate) {
 

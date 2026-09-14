@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.ext
+package io.edenx.androidpark.core.ui
 
 import android.app.Activity
 import android.app.Activity.RESULT_CANCELED
@@ -23,7 +23,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
-import io.edenx.androidplayground.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose

@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.component.base
+package io.edenx.androidpark.core.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -19,7 +19,7 @@ import com.google.gson.Gson
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.QRCodeWriter
-import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidplayground.databinding.ActivityFileTransferBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

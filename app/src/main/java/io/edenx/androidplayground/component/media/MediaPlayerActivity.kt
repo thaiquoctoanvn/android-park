@@ -10,7 +10,7 @@ import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
-import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidplayground.databinding.ActivityMediaPlayerBinding
 
 class MediaPlayerActivity :

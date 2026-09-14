@@ -21,9 +21,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidplayground.databinding.ActivityBluetoothConnectingBinding
-import io.edenx.androidplayground.databinding.ItemTextBinding
+import io.edenx.androidpark.core.ui.databinding.ItemSimpleTextRowBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -192,7 +192,7 @@ class BluetoothConnectingActivity :
         private val onItemClicked: (BluetoothDevice) -> Unit = {}
     ) : ListAdapter<BluetoothDevice, BluetoothDeviceAdapter.ItemHolder>(AdapterDiff()) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-            return ItemHolder(ItemTextBinding.inflate(
+            return ItemHolder(ItemSimpleTextRowBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -203,7 +203,7 @@ class BluetoothConnectingActivity :
             holder.bindData(getItem(position))
         }
 
-        inner class ItemHolder(private val binding: ItemTextBinding) :
+        inner class ItemHolder(private val binding: ItemSimpleTextRowBinding) :
             RecyclerView.ViewHolder(binding.root) {
             @SuppressLint("MissingPermission")
             fun bindData(item: BluetoothDevice) {

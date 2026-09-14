@@ -2,7 +2,7 @@ package io.edenx.androidplayground.component.payment.googlepay
 
 import android.view.View
 import dagger.hilt.android.AndroidEntryPoint
-import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidplayground.databinding.ActivityGooglePayBinding
 import io.edenx.androidplayground.util.GooglePayUtil
 import javax.inject.Inject

@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.TouchDelegate
 import android.view.View
-import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidpark.core.model.TouchPointItem
 import io.edenx.androidplayground.databinding.ActivityMultiTouchBinding
 

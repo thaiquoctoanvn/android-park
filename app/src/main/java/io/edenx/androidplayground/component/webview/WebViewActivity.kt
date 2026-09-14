@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
 import android.widget.Toast
-import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidplayground.databinding.ActivityWebViewBinding
 
 class WebViewActivity : BaseActivity<ActivityWebViewBinding>(ActivityWebViewBinding::inflate) {
