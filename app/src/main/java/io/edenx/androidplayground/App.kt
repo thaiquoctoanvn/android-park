@@ -5,9 +5,8 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.android.billingclient.api.BillingClient
 import com.google.android.gms.ads.AdError
@@ -24,7 +23,7 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltAndroidApp
-class App : Application(), Application.ActivityLifecycleCallbacks, LifecycleObserver {
+class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecycleObserver {
 
     @Inject lateinit var sharedPrefUtil: SharedPrefUtil
     @Inject lateinit var adUtil: AdUtil
@@ -34,7 +33,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks, LifecycleObse
     private var currentActivity: Activity? = null
     private var loadTime: Long = 0
     override fun onCreate() {
-        super.onCreate()
+        super<Application>.onCreate()
         registerActivityLifecycleCallbacks(this)
         MobileAds.initialize(this) {}
         if (BuildConfig.DEBUG) {
@@ -136,8 +135,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks, LifecycleObse
 
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onMoveToForeground() {
+    override fun onStart(owner: LifecycleOwner) {
         currentActivity?.let {
             //sharedPrefUtil.setAppOpenTime(sharedPrefUtil.getAppOpenTime() + 1)
 //            appOpenAdManager.showAdIfAvailable(it, object : OnShowAdCompleteListener {
