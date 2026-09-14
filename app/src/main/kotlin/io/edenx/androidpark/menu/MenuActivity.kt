@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.component
+package io.edenx.androidpark.menu
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,18 +15,17 @@ import com.bumptech.glide.Glide
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.UpdateAvailability
-import io.edenx.androidplayground.BuildConfig
-import io.edenx.androidplayground.R
+import io.edenx.androidpark.BuildConfig
 import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidpark.feature.camera.CameraNavigation
 import io.edenx.androidpark.feature.camera.CameraScreenType
-import io.edenx.androidplayground.data.model.MenuItem
-import io.edenx.androidplayground.data.TypeMenu
-import io.edenx.androidplayground.databinding.ActivityMenuBinding
-import io.edenx.androidplayground.databinding.ItemMenuBinding
-import io.edenx.androidplayground.util.*
+import io.edenx.androidpark.databinding.ActivityMenuBinding
+import io.edenx.androidpark.databinding.ItemMenuBinding
 import io.edenx.androidpark.core.common.generateRandomColor
 import io.edenx.androidpark.core.ui.DmitrysGridItemDecoration
+import io.edenx.androidpark.R
+
+private const val UPDATE_REQUEST_CODE = 1101
 
 class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::inflate) {
 
