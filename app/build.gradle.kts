@@ -55,42 +55,31 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:model"))
-    implementation(project(":core:network"))
     implementation(project(":core:ui"))
 
-    implementation(project(":feature:webview"))
-    implementation(project(":feature:googlepay"))
-    implementation(project(":feature:billing"))
-    implementation(project(":feature:paging"))
-    implementation(project(":feature:camera"))
-    implementation(project(":feature:media"))
-    implementation(project(":feature:nav"))
-    implementation(project(":feature:connectivity"))
+    // The registry in TypeMenu is the only thing that knows every sample.
     implementation(project(":feature:animation"))
     implementation(project(":feature:backstack"))
+    implementation(project(":feature:billing"))
+    implementation(project(":feature:camera"))
+    implementation(project(":feature:connectivity"))
     implementation(project(":feature:gesture"))
+    implementation(project(":feature:googlepay"))
+    implementation(project(":feature:media"))
+    implementation(project(":feature:nav"))
+    implementation(project(":feature:paging"))
+    implementation(project(":feature:webview"))
 
     implementation(libs.bundles.androidx.base)
     implementation(libs.bundles.lifecycle)
-    implementation(libs.androidx.lifecycle.process)
+    implementation(libs.androidx.lifecycle.process)   // ProcessLifecycleOwner in App
 
+    // Needed by the crashlytics Gradle plugin applied above.
     implementation(platform(libs.firebase.bom))
-    implementation(libs.bundles.firebase)
+    implementation(libs.firebase.crashlytics)
 
-    implementation(libs.play.services.wallet)
-    implementation(libs.play.app.update.ktx)
-    implementation(libs.billing.ktx)
-
-    implementation(libs.bundles.camerax)
-    implementation(libs.bundles.mlkit)
-    implementation(libs.zxing.core)
-
-    implementation(libs.bundles.media3)
-    implementation(libs.androidx.paging.runtime)
-    implementation(libs.bundles.navigation)
-
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.glide)
+    implementation(libs.play.app.update.ktx)          // in-app update in MenuActivity
+    implementation(libs.glide)                        // menu tiles
 
     testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.test.ext.junit)
