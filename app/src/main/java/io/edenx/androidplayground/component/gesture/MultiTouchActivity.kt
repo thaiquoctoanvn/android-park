@@ -9,7 +9,7 @@ import android.view.MotionEvent
 import android.view.TouchDelegate
 import android.view.View
 import io.edenx.androidplayground.component.base.BaseActivity
-import io.edenx.androidplayground.data.model.TouchPointItem
+import io.edenx.androidpark.core.model.TouchPointItem
 import io.edenx.androidplayground.databinding.ActivityMultiTouchBinding
 
 class MultiTouchActivity : BaseActivity<ActivityMultiTouchBinding>(ActivityMultiTouchBinding::inflate) {

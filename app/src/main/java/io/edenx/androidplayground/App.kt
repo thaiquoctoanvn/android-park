@@ -21,6 +21,7 @@ import dagger.hilt.android.HiltAndroidApp
 import io.edenx.androidplayground.util.*
 import java.util.*
 import javax.inject.Inject
+import io.edenx.androidpark.core.common.SharedPrefUtil
 
 @HiltAndroidApp
 class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecycleObserver {

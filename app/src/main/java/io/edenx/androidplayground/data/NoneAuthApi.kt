@@ -1,6 +1,6 @@
 package io.edenx.androidplayground.data
 
-import io.edenx.androidplayground.data.model.DoggoImageModel
+import io.edenx.androidpark.core.model.DoggoImageModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.data.model
+package io.edenx.androidpark.core.model
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName

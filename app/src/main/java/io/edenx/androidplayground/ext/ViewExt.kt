@@ -33,13 +33,14 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.util.UUID
+import io.edenx.androidpark.core.designsystem.R as DesignSystemR
 
 fun ComponentActivity.startActivityWithTransition(
     intent: Intent,
     bundle: Bundle = bundleOf()
 ) {
     startActivity(intent, bundle)
-    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+    overridePendingTransition(DesignSystemR.anim.slide_from_right, DesignSystemR.anim.slide_to_left)
 }
 
 fun ComponentActivity.closeKeyboard(view: View) {

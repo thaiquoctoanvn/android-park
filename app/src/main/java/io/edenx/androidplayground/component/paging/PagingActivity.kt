@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import io.edenx.androidplayground.component.base.BaseActivity
-import io.edenx.androidplayground.data.model.DoggoImageModel
+import io.edenx.androidpark.core.model.DoggoImageModel
 import io.edenx.androidplayground.databinding.ActivityPagingBinding
 import io.edenx.androidplayground.databinding.ItemMenuBinding
 import io.edenx.androidplayground.util.DmitrysGridItemDecoration

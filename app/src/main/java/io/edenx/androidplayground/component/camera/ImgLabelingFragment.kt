@@ -45,6 +45,7 @@ import java.util.concurrent.Executors
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+import io.edenx.androidpark.core.designsystem.R as DesignSystemR
 
 class ImgLabelingFragment : BaseFragment<FragmentImgLabelingBinding>(FragmentImgLabelingBinding::inflate) {
     private val permissionsRequired = arrayOf(Manifest.permission.CAMERA, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) Manifest.permission.READ_MEDIA_IMAGES else Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -324,7 +325,7 @@ class ImgLabelingFragment : BaseFragment<FragmentImgLabelingBinding>(FragmentImg
     private fun setGalleryThumbnail(uri: Uri) {
         cameraUiContainerBinding?.photoViewButton?.apply {
             post {
-                setPadding(resources.getDimension(R.dimen.dp_4).toInt())
+                setPadding(resources.getDimension(DesignSystemR.dimen.dp_4).toInt())
                 Glide.with(this)
                     .load(uri)
                     .apply(RequestOptions.circleCropTransform())
