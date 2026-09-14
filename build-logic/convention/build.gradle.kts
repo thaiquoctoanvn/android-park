@@ -37,6 +37,10 @@ gradlePlugin {
             id = "androidpark.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
+        register("androidFeature") {
+            id = "androidpark.android.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
         register("androidView") {
             id = "androidpark.android.view"
             implementationClass = "AndroidViewConventionPlugin"

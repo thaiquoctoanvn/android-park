@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.component.gesture
+package io.edenx.androidpark.feature.gesture
 
 import android.annotation.SuppressLint
 import android.graphics.Rect
@@ -10,7 +10,7 @@ import android.view.TouchDelegate
 import android.view.View
 import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidpark.core.model.TouchPointItem
-import io.edenx.androidplayground.databinding.ActivityMultiTouchBinding
+import io.edenx.androidpark.feature.gesture.databinding.ActivityMultiTouchBinding
 
 class MultiTouchActivity : BaseActivity<ActivityMultiTouchBinding>(ActivityMultiTouchBinding::inflate) {
 

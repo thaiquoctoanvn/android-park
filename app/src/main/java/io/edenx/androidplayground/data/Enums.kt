@@ -1,7 +1,7 @@
 package io.edenx.androidplayground.data
 
 import io.edenx.androidplayground.component.animation.AnimationActivity
-import io.edenx.androidplayground.component.backstack.BackStackActivity
+import io.edenx.androidpark.feature.backstack.BackStackActivity
 import io.edenx.androidplayground.component.payment.billing.PurchaseActivity
 import io.edenx.androidplayground.component.camera.CameraActivity
 import io.edenx.androidplayground.component.connectivity.BluetoothConnectingActivity
@@ -23,10 +23,4 @@ enum class TypeMenu(val prompt: String, val screen: Class<*>? = null) {
     MEDIA_3("Media Player", PlaylistActivity::class.java),
     LAUNCH_MODE("Launch Mode", BackStackActivity::class.java),
     GOOGLE_PAY("Google Pay", GooglePayActivity::class.java)
-}
-
-enum class ActivityLaunchFlag {
-    SINGLE_TOP,
-    NEW_TASK,
-    CLEAR_TOP,
 }

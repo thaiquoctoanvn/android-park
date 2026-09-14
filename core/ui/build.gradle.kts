@@ -1,10 +1,13 @@
 plugins {
     id("androidpark.android.library")
-    id("androidpark.android.view")
 }
 
 android {
     namespace = "io.edenx.androidpark.core.ui"
+
+    // Set directly rather than through androidpark.android.view: that
+    // plugin also adds api(:core:ui), which this module cannot depend on.
+    buildFeatures { viewBinding = true }
 }
 
 dependencies {

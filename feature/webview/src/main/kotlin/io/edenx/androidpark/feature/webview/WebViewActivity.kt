@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.component.webview
+package io.edenx.androidpark.feature.webview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.View
 import android.webkit.WebView
 import android.widget.Toast
 import io.edenx.androidpark.core.ui.BaseActivity
-import io.edenx.androidplayground.databinding.ActivityWebViewBinding
+import io.edenx.androidpark.feature.webview.databinding.ActivityWebViewBinding
 
 class WebViewActivity : BaseActivity<ActivityWebViewBinding>(ActivityWebViewBinding::inflate) {
     override fun onViewCreated() {
