@@ -1,5 +1,5 @@
-// Top-level build file. Nothing is applied here; every module opts in.
-// All versions live in gradle/libs.versions.toml.
+// Top-level build file. Nothing is applied here; every module opts in through
+// a convention plugin. All versions live in gradle/libs.versions.toml.
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
