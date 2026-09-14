@@ -98,4 +98,11 @@
     <style name="shapeImageViewStyle50">
         <item name="cornerSize">50%</item>
     </style>
+
+    <!-- Host theme for Compose screens: the window chrome only. Colours and
+         typography come from AndroidParkTheme inside setContent. -->
+    <style name="Theme.AndroidPark.Compose" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

@@ -24,6 +24,7 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.hilt.gradlePlugin)
+    compileOnly(libs.compose.gradlePlugin)
 }
 
 gradlePlugin {
@@ -39,6 +40,10 @@ gradlePlugin {
         register("androidView") {
             id = "androidpark.android.view"
             implementationClass = "AndroidViewConventionPlugin"
+        }
+        register("androidCompose") {
+            id = "androidpark.android.compose"
+            implementationClass = "AndroidComposeConventionPlugin"
         }
         register("androidHilt") {
             id = "androidpark.android.hilt"
