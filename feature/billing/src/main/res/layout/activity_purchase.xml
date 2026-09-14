@@ -13,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingVertical="@dimen/dp_8"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingVertical="@dimen/dp_8">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/bt_back"
@@ -45,10 +44,7 @@
         android:clipToPadding="false"
         android:paddingHorizontal="@dimen/dp_16"
         android:paddingTop="@dimen/dp_16"
-        android:paddingBottom="@dimen/dp_32"
-        app:layout_constraintBottom_toTopOf="@id/av_banner_container"
-        app:layout_constraintTop_toBottomOf="@id/ll"
-        app:layout_goneMarginBottom="0dp">
+        android:paddingBottom="@dimen/dp_32">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
