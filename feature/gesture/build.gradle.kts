@@ -1,6 +1,6 @@
 plugins {
     id("androidpark.android.feature")
-    id("androidpark.android.view")
+    id("androidpark.android.compose")
 }
 
 android {

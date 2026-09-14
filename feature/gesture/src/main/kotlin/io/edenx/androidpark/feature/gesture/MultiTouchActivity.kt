@@ -1,47 +1,21 @@
 package io.edenx.androidpark.feature.gesture
 
-import android.annotation.SuppressLint
-import android.graphics.Rect
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.MotionEvent
-import android.view.TouchDelegate
-import android.view.View
-import io.edenx.androidpark.core.ui.BaseActivity
-import io.edenx.androidpark.core.model.TouchPointItem
-import io.edenx.androidpark.feature.gesture.databinding.ActivityMultiTouchBinding
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import io.edenx.androidpark.core.designsystem.AndroidParkTheme
 
-class MultiTouchActivity : BaseActivity<ActivityMultiTouchBinding>(ActivityMultiTouchBinding::inflate) {
-
-    private val touchPoints = mutableListOf<TouchPointItem>()
-
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onViewCreated() {
-        binding.v.setOnTouchListener { view, motionEvent ->
-            when (motionEvent.action and motionEvent.actionMasked) {
-                MotionEvent.ACTION_DOWN, MotionEvent.ACTION_POINTER_DOWN -> {
-                    touchPoints.add(TouchPointItem(motionEvent.x, motionEvent.y))
-                    Log.d("xxxx", "Touch points: $touchPoints")
-                    //changeTouchArea(activityBinding.vTargetTouch)
-                }
-                else -> return@setOnTouchListener false
+/**
+ * The first Compose sample. No BaseActivity, no ViewBinding, no layout XML -
+ * a ComponentActivity is all a Compose screen needs.
+ */
+class MultiTouchActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            AndroidParkTheme {
+                MultiTouchScreen()
             }
-            return@setOnTouchListener true
-        }
-    }
-
-    private fun changeTouchArea(view: View) {
-        binding.rootLayout.post {
-            val touchArea = Rect()
-            view.getHitRect(touchArea)
-            touchArea.apply {
-                top -= 600
-                bottom += 600
-                left -= 600
-                right += 600
-            }
-            binding.rootLayout.touchDelegate = TouchDelegate(touchArea, view)
         }
     }
 }
