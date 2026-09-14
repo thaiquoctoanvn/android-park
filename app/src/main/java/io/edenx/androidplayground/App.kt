@@ -14,10 +14,10 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.appopen.AppOpenAd
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.remoteconfig.ktx.remoteConfig
-import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import dagger.hilt.android.HiltAndroidApp
+import io.edenx.androidpark.core.analytics.AdUtil
+import io.edenx.androidpark.core.analytics.APP_OPEN_AD_KEY
+import io.edenx.androidpark.core.analytics.RemoteConfigProvider
 import io.edenx.androidplayground.util.*
 import java.util.*
 import javax.inject.Inject
@@ -28,6 +28,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
 
     @Inject lateinit var sharedPrefUtil: SharedPrefUtil
     @Inject lateinit var adUtil: AdUtil
+    @Inject lateinit var remoteConfigProvider: RemoteConfigProvider
     @Inject lateinit var billingUtil: BillingUtil
     private lateinit var appOpenAdManager: AppOpenAdManager
 
@@ -47,7 +48,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
             MobileAds.setRequestConfiguration(configuration)
         }
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
-        fetchFRC()
+        remoteConfigProvider.fetch()
         appOpenAdManager = AppOpenAdManager()
         //checkPurchase()
     }
@@ -80,23 +81,6 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
                 appOpenAdManager = AppOpenAdManager()
             }
         )
-    }
-
-    private fun fetchFRC() {
-        Firebase.remoteConfig.apply {
-            setConfigSettingsAsync(remoteConfigSettings {
-                minimumFetchIntervalInSeconds = if (BuildConfig.DEBUG) 0 else 3600
-            })
-            setDefaultsAsync(R.xml.remote_config_defaults)
-            fetchAndActivate()
-                .addOnCompleteListener {
-                    if (it.isSuccessful) Log.d("xxxx", "Remote config fetched")
-                }
-                .addOnFailureListener {
-                    it.printStackTrace()
-                    Log.d("xxxx", "Remote config fetching error: ${it.message}")
-                }
-        }
     }
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
@@ -152,9 +136,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
             isLoadingAd = true
             adUtil.loadAppOpenAd(
                 context = context,
-                fullAdId = Firebase.remoteConfig.getString(
-                    APP_OPEN_AD_KEY
-                ),
+                fullAdId = remoteConfigProvider.getString(APP_OPEN_AD_KEY),
                 mOnAdLoaded = {
                     appOpenAd = it
                     isLoadingAd = false

@@ -30,7 +30,9 @@ rootProject.name = "Android Playground"
 
 include(":app")
 
+include(":core:analytics")
 include(":core:common")
 include(":core:designsystem")
 include(":core:model")
+include(":core:network")
 include(":core:ui")

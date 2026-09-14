@@ -53,9 +53,11 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:analytics"))
     implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:model"))
+    implementation(project(":core:network"))
     implementation(project(":core:ui"))
 
     implementation(libs.bundles.androidx.base)
@@ -65,7 +67,6 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.bundles.firebase)
 
-    implementation(libs.play.services.ads)
     implementation(libs.play.services.wallet)
     implementation(libs.play.app.update.ktx)
     implementation(libs.billing.ktx)
@@ -78,7 +79,6 @@ dependencies {
     implementation(libs.androidx.paging.runtime)
     implementation(libs.bundles.navigation)
 
-    implementation(libs.bundles.retrofit)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.glide)
 

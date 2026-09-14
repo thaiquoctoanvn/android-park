@@ -1,20 +1,22 @@
-package io.edenx.androidplayground.util
+package io.edenx.androidpark.core.analytics
 
 import android.content.Context
 import android.util.Log
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
+import javax.inject.Inject
+import javax.inject.Singleton
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.remoteconfig.ktx.remoteConfig
-import io.edenx.androidplayground.BuildConfig
 
-class AdUtil(context: Context) {
+@Singleton
+class AdUtil @Inject constructor(
+    private val adIds: AdIds,
+) {
 
     companion object {
         const val interstitialAdTest = "1033173712"
@@ -26,18 +28,16 @@ class AdUtil(context: Context) {
 
     var rewardedAd: RewardedAd? = null
 
-    init {
-
+    /**
+     * Was an init block that needed a Context. Now an explicit call, so the
+     * class can be constructor-injected and nothing loads an ad just because
+     * the graph was created.
+     */
+    fun preloadRewardedAd(context: Context) {
         loadRewardedAd(
             context = context,
-            fullAdId = if (BuildConfig.DEBUG) "$publisherIdTest/$rewardedAdTest" else "${Firebase.remoteConfig.getString(PUBLISHER_ID_KEY)}/${
-                Firebase.remoteConfig.getString(
-                    REWARDED_AD_KEY
-                )
-            }",
-            mOnAdLoaded = {
-                rewardedAd = it
-            }
+            fullAdId = adIds.rewarded,
+            mOnAdLoaded = { rewardedAd = it }
         )
     }
 
@@ -49,7 +49,7 @@ class AdUtil(context: Context) {
     ) {
         InterstitialAd.load(
             context,
-            if (BuildConfig.DEBUG) "$publisherIdTest/$interstitialAdTest" else fullAdId,
+            fullAdId,
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(ad: InterstitialAd) {
@@ -71,7 +71,7 @@ class AdUtil(context: Context) {
         onAdClosed: () -> Unit
     ): AdView {
         val adView = AdView(adContainer.context).apply {
-            adUnitId = if (BuildConfig.DEBUG) "$publisherIdTest/$bannerAdTest" else fullAdId
+            adUnitId = fullAdId
             setAdSize(AdSize.BANNER)
         }
         adContainer.addView(adView)
@@ -103,7 +103,7 @@ class AdUtil(context: Context) {
     ) {
         RewardedAd.load(
             context,
-            if (BuildConfig.DEBUG) "$publisherIdTest/$rewardedAdTest" else fullAdId,
+            fullAdId,
             AdRequest.Builder().build(),
             object : RewardedAdLoadCallback() {
                 override fun onAdLoaded(ad: RewardedAd) {
@@ -127,7 +127,7 @@ class AdUtil(context: Context) {
         mOnAdFailedToLoad: ((LoadAdError) -> Unit)? = null
     ) {
         AppOpenAd.load(
-            context, if (BuildConfig.DEBUG) "$publisherIdTest/$appOpenAdTest" else fullAdId, AdRequest.Builder().build(),
+            context, fullAdId, AdRequest.Builder().build(),
             object : AppOpenAd.AppOpenAdLoadCallback() {
                 override fun onAdLoaded(ad: AppOpenAd) {
                     Log.d("xxxx", "AppOpenAd loaded")
