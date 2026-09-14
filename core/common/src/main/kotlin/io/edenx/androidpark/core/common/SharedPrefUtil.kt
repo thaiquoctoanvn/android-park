@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.util
+package io.edenx.androidpark.core.common
 
 import android.content.SharedPreferences
 import androidx.core.content.edit

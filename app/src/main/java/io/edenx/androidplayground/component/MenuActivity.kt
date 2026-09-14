@@ -24,6 +24,7 @@ import io.edenx.androidplayground.data.TypeMenu
 import io.edenx.androidplayground.databinding.ActivityMenuBinding
 import io.edenx.androidplayground.databinding.ItemMenuBinding
 import io.edenx.androidplayground.util.*
+import io.edenx.androidpark.core.common.generateRandomColor
 
 class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::inflate) {
 

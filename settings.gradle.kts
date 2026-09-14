@@ -29,3 +29,7 @@ dependencyResolutionManagement {
 rootProject.name = "Android Playground"
 
 include(":app")
+
+include(":core:common")
+include(":core:designsystem")
+include(":core:model")

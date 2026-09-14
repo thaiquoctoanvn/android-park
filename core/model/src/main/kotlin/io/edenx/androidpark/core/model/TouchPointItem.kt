@@ -1,3 +1,3 @@
-package io.edenx.androidplayground.data.model
+package io.edenx.androidpark.core.model
 
 data class TouchPointItem(var xPoint: Float, var yPoint: Float)

@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewbinding.ViewBinding
 import io.edenx.androidplayground.R
+import io.edenx.androidpark.core.designsystem.R as DesignSystemR
 
 typealias ViewBindingType<T> = (LayoutInflater) -> T
 
@@ -32,7 +33,7 @@ abstract class BaseActivity<VB : ViewBinding>(
 
     override fun onBackPressed() {
         super.onBackPressed()
-        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right)
+        overridePendingTransition(DesignSystemR.anim.slide_from_left, DesignSystemR.anim.slide_to_right)
     }
 
     override fun onDestroy() {

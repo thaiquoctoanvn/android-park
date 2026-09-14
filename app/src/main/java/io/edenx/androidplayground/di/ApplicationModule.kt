@@ -1,7 +1,6 @@
 package io.edenx.androidplayground.di
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
 import com.moczul.ok2curl.CurlInterceptor
 import com.moczul.ok2curl.logger.Logger
@@ -58,15 +57,6 @@ object ApplicationModule {
     @Singleton
     @Provides
     fun providePagingRepo(api: NoneAuthApi) = PagingRepo(api)
-
-    @Provides
-    @Singleton
-    fun provideSharedPreferenceInstance(@ApplicationContext applicationContext: Context): SharedPreferences =
-        applicationContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-
-    @Singleton
-    @Provides
-    fun provideSharedPreferenceUtil(sharedPreferences: SharedPreferences) = SharedPrefUtil(sharedPreferences)
 
     @Singleton
     @Provides

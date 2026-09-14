@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.data.model
+package io.edenx.androidpark.core.model
 
 data class SimpleItem(
     val id: String,

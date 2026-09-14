@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.util
+package io.edenx.androidpark.core.common
 
 import android.app.Activity
 import android.content.Intent

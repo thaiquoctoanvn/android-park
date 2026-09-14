@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.ext
+package io.edenx.androidpark.core.common
 
 import android.content.res.Resources
 

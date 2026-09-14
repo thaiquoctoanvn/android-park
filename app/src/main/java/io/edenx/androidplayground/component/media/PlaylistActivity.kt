@@ -25,7 +25,7 @@ import com.bumptech.glide.Glide
 import com.google.common.util.concurrent.ListenableFuture
 import io.edenx.androidplayground.R
 import io.edenx.androidplayground.component.base.BaseActivity
-import io.edenx.androidplayground.data.model.SimpleItem
+import io.edenx.androidpark.core.model.SimpleItem
 import io.edenx.androidplayground.databinding.ActivityPlaylistBinding
 import io.edenx.androidplayground.databinding.ItemTextBinding
 import io.edenx.androidplayground.ext.requestMultiplePermissions

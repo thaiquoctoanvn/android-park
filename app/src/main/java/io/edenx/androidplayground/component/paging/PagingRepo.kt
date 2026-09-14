@@ -4,7 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import io.edenx.androidplayground.data.NoneAuthApi
-import io.edenx.androidplayground.data.model.DoggoImageModel
+import io.edenx.androidpark.core.model.DoggoImageModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
