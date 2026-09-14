@@ -1,5 +1,6 @@
 plugins {
     id("androidpark.android.library")
+    id("androidpark.android.compose")
 }
 
 android {
