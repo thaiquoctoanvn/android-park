@@ -56,6 +56,7 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:model"))
+    implementation(project(":core:ui"))
 
     implementation(libs.bundles.androidx.base)
     implementation(libs.bundles.lifecycle)

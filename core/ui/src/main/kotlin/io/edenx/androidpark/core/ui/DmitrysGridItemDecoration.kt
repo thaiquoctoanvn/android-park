@@ -1,4 +1,4 @@
-package io.edenx.androidplayground.util
+package io.edenx.androidpark.core.ui
 
 import android.graphics.Rect
 import android.view.View

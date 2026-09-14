@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.edenx.androidplayground.R
-import io.edenx.androidplayground.component.base.BaseFragment
+import io.edenx.androidpark.core.ui.BaseFragment
 import io.edenx.androidplayground.databinding.FragmentSecondBinding
 import io.edenx.androidplayground.databinding.ViewMessageTypingBoxBinding
 

@@ -24,7 +24,7 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
-import io.edenx.androidplayground.component.base.BaseFragment
+import io.edenx.androidpark.core.ui.BaseFragment
 import io.edenx.androidplayground.databinding.FragmentQrDetectingBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

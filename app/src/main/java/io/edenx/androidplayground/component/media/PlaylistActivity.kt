@@ -24,11 +24,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.common.util.concurrent.ListenableFuture
 import io.edenx.androidplayground.R
-import io.edenx.androidplayground.component.base.BaseActivity
+import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidpark.core.model.SimpleItem
 import io.edenx.androidplayground.databinding.ActivityPlaylistBinding
-import io.edenx.androidplayground.databinding.ItemTextBinding
-import io.edenx.androidplayground.ext.requestMultiplePermissions
+import io.edenx.androidpark.core.ui.databinding.ItemSimpleTextRowBinding
+import io.edenx.androidpark.core.ui.requestMultiplePermissions
 
 class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>(ActivityPlaylistBinding::inflate) {
 
@@ -153,7 +153,7 @@ class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>(ActivityPlaylistB
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
             return ItemHolder(
-                ItemTextBinding.inflate(
+                ItemSimpleTextRowBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -165,7 +165,7 @@ class PlaylistActivity : BaseActivity<ActivityPlaylistBinding>(ActivityPlaylistB
             holder.bindData(getItem(position))
         }
 
-        inner class ItemHolder(private val binding: ItemTextBinding) :
+        inner class ItemHolder(private val binding: ItemSimpleTextRowBinding) :
             RecyclerView.ViewHolder(binding.root) {
             fun bindData(item: SimpleItem) {
                 with(binding) {

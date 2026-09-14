@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.edenx.androidplayground.R
-import io.edenx.androidplayground.component.base.BaseFragment
+import io.edenx.androidpark.core.ui.BaseFragment
 import io.edenx.androidplayground.databinding.FragmentThirdBinding
 
 class ThirdFragment : BaseFragment<FragmentThirdBinding>(FragmentThirdBinding::inflate) {
