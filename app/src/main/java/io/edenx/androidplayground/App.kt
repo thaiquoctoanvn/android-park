@@ -8,7 +8,6 @@ import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.android.billingclient.api.BillingClient
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.MobileAds
@@ -18,10 +17,9 @@ import dagger.hilt.android.HiltAndroidApp
 import io.edenx.androidpark.core.analytics.AdUtil
 import io.edenx.androidpark.core.analytics.APP_OPEN_AD_KEY
 import io.edenx.androidpark.core.analytics.RemoteConfigProvider
-import io.edenx.androidplayground.util.*
+import io.edenx.androidpark.core.common.SharedPrefUtil
 import java.util.*
 import javax.inject.Inject
-import io.edenx.androidpark.core.common.SharedPrefUtil
 
 @HiltAndroidApp
 class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecycleObserver {
@@ -29,7 +27,6 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
     @Inject lateinit var sharedPrefUtil: SharedPrefUtil
     @Inject lateinit var adUtil: AdUtil
     @Inject lateinit var remoteConfigProvider: RemoteConfigProvider
-    @Inject lateinit var billingUtil: BillingUtil
     private lateinit var appOpenAdManager: AppOpenAdManager
 
     private var currentActivity: Activity? = null
@@ -50,37 +47,6 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         remoteConfigProvider.fetch()
         appOpenAdManager = AppOpenAdManager()
-        //checkPurchase()
-    }
-
-    private fun checkPurchase() {
-        billingUtil.connectToPlayStore(
-            onConnected = {
-//                billingUtil.queryPurchases(BillingClient.ProductType.SUBS) { purchaseList ->
-//                    if (purchaseList.isEmpty()) sharedPrefUtil.setIsBillingPurchased(false)
-//                    purchaseList.forEach {
-//                        billingUtil.acknowledgePurchase(
-//                            purchase = it,
-//                            onPurchaseSucceed = {
-//                                Log.d(BillingUtil.tag, "Acknowledge existing purchase ok")
-//                                sharedPrefUtil.setIsBillingPurchased(true)
-//                            },
-//                            onPurchaseFailed = {
-//                                Log.d(BillingUtil.tag, "Acknowledge existing purchase failed")
-//                                sharedPrefUtil.setIsBillingPurchased(false)
-//                            },
-//                            onAcknowledged = {
-//                                sharedPrefUtil.setIsBillingPurchased(true)
-//                            }
-//                        )
-//                    }
-//                    appOpenAdManager = AppOpenAdManager()
-//                }
-            },
-            onDisconnected = {
-                appOpenAdManager = AppOpenAdManager()
-            }
-        )
     }
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
