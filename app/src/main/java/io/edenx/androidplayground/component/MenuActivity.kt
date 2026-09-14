@@ -18,7 +18,8 @@ import com.google.android.play.core.install.model.UpdateAvailability
 import io.edenx.androidplayground.BuildConfig
 import io.edenx.androidplayground.R
 import io.edenx.androidpark.core.ui.BaseActivity
-import io.edenx.androidplayground.component.camera.CameraActivity
+import io.edenx.androidpark.feature.camera.CameraNavigation
+import io.edenx.androidpark.feature.camera.CameraScreenType
 import io.edenx.androidplayground.data.model.MenuItem
 import io.edenx.androidplayground.data.TypeMenu
 import io.edenx.androidplayground.databinding.ActivityMenuBinding
@@ -92,12 +93,10 @@ class MenuActivity : BaseActivity<ActivityMenuBinding>(ActivityMenuBinding::infl
 
     private fun openSample(item: MenuItem) {
         when (item.type) {
-            TypeMenu.IMG_LABELING -> {
-                startActivity(Intent(this, item.type.screen).putExtra("type", CameraActivity.CameraScreenType.IMG_LABELING.name))
-            }
-            TypeMenu.QR_DETECTING -> {
-                startActivity(Intent(this, item.type.screen).putExtra("type", CameraActivity.CameraScreenType.QR_DETECTING.name))
-            }
+            TypeMenu.IMG_LABELING ->
+                startActivity(CameraNavigation.intent(this, CameraScreenType.IMG_LABELING))
+            TypeMenu.QR_DETECTING ->
+                startActivity(CameraNavigation.intent(this, CameraScreenType.QR_DETECTING))
             else -> {
                 item.type.screen?.let {
                     startActivity(Intent(this, it))

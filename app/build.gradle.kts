@@ -61,6 +61,10 @@ dependencies {
     implementation(project(":core:ui"))
 
     implementation(project(":feature:webview"))
+    implementation(project(":feature:googlepay"))
+    implementation(project(":feature:billing"))
+    implementation(project(":feature:paging"))
+    implementation(project(":feature:camera"))
     implementation(project(":feature:media"))
     implementation(project(":feature:nav"))
     implementation(project(":feature:connectivity"))

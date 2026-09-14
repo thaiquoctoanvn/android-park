@@ -2,14 +2,14 @@ package io.edenx.androidplayground.data
 
 import io.edenx.androidpark.feature.animation.AnimationActivity
 import io.edenx.androidpark.feature.backstack.BackStackActivity
-import io.edenx.androidplayground.component.payment.billing.PurchaseActivity
-import io.edenx.androidplayground.component.camera.CameraActivity
+import io.edenx.androidpark.feature.billing.PurchaseActivity
+import io.edenx.androidpark.feature.camera.CameraActivity
 import io.edenx.androidpark.feature.connectivity.BluetoothConnectingActivity
 import io.edenx.androidpark.feature.connectivity.FileTransferActivity
 import io.edenx.androidpark.feature.media.PlaylistActivity
 import io.edenx.androidpark.feature.nav.NavigationActivity
-import io.edenx.androidplayground.component.paging.PagingActivity
-import io.edenx.androidplayground.component.payment.googlepay.GooglePayActivity
+import io.edenx.androidpark.feature.paging.PagingActivity
+import io.edenx.androidpark.feature.googlepay.GooglePayActivity
 
 enum class TypeMenu(val prompt: String, val screen: Class<*>? = null) {
     BILLING("Inapp billing", PurchaseActivity::class.java),
