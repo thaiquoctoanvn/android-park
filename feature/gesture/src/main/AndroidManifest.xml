@@ -3,6 +3,7 @@
     <application>
         <activity
             android:name=".MultiTouchActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AndroidPark.Compose" />
     </application>
 </manifest>

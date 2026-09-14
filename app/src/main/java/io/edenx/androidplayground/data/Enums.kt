@@ -10,6 +10,8 @@ import io.edenx.androidpark.feature.media.PlaylistActivity
 import io.edenx.androidpark.feature.nav.NavigationActivity
 import io.edenx.androidpark.feature.paging.PagingActivity
 import io.edenx.androidpark.feature.googlepay.GooglePayActivity
+import io.edenx.androidpark.feature.gesture.MultiTouchActivity
+import io.edenx.androidpark.feature.webview.WebViewActivity
 
 enum class TypeMenu(val prompt: String, val screen: Class<*>? = null) {
     BILLING("Inapp billing", PurchaseActivity::class.java),
@@ -22,5 +24,7 @@ enum class TypeMenu(val prompt: String, val screen: Class<*>? = null) {
     BLUETOOTH_DISCOVERY("Bluetooth Discovery", BluetoothConnectingActivity::class.java),
     MEDIA_3("Media Player", PlaylistActivity::class.java),
     LAUNCH_MODE("Launch Mode", BackStackActivity::class.java),
-    GOOGLE_PAY("Google Pay", GooglePayActivity::class.java)
+    GOOGLE_PAY("Google Pay", GooglePayActivity::class.java),
+    MULTI_TOUCH("Multi Touch (Compose)", MultiTouchActivity::class.java),
+    WEB_VIEW("WebView", WebViewActivity::class.java)
 }
