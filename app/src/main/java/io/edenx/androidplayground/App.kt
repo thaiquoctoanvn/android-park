@@ -89,14 +89,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
             setDefaultsAsync(R.xml.remote_config_defaults)
             fetchAndActivate()
                 .addOnCompleteListener {
-                    if (it.isSuccessful)
-                        Log.d(
-                            "xxxx",
-                            "Remote config fetched: ${
-                                Firebase.remoteConfig.getString(
-                                    OPEN_AI_API_KEY
-                                )}"
-                        )
+                    if (it.isSuccessful) Log.d("xxxx", "Remote config fetched")
                 }
                 .addOnFailureListener {
                     it.printStackTrace()

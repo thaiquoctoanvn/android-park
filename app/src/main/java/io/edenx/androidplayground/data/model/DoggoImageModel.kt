@@ -1,8 +1,10 @@
 package io.edenx.androidplayground.data.model
 
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class DoggoImageModel(
     @SerializedName("breeds")
     val breeds: List<Any?>? = null,

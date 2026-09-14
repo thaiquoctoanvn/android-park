@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.edenx.androidplayground.R
 import io.edenx.androidplayground.component.base.BaseFragment
-import io.edenx.androidplayground.data.model.MenuItem
 import io.edenx.androidplayground.databinding.FragmentSecondBinding
 import io.edenx.androidplayground.databinding.ViewMessageTypingBoxBinding
 
@@ -25,7 +24,7 @@ class SecondFragment : BaseFragment<FragmentSecondBinding>(FragmentSecondBinding
             layoutManager = LinearLayoutManager(this.context)
             adapter = SecondAdapter(
                 (1..15).map {
-                    MenuItem(it, name = "Hey you!")
+                    NavItem(it, name = "Hey you!")
                 }.toMutableList()
             )
             addItemDecoration(DividerItemDecoration(this.context, RecyclerView.VERTICAL).apply {
@@ -40,7 +39,9 @@ class SecondFragment : BaseFragment<FragmentSecondBinding>(FragmentSecondBinding
         }
     }
 
-    class SecondAdapter(val items: MutableList<MenuItem>) : RecyclerView.Adapter<SecondAdapter.ItemViewHolder>() {
+    data class NavItem(val id: Int, val name: String)
+
+    class SecondAdapter(val items: MutableList<NavItem>) : RecyclerView.Adapter<SecondAdapter.ItemViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             return ItemViewHolder(ViewMessageTypingBoxBinding.inflate(LayoutInflater.from(parent.context), parent, false))
         }
@@ -54,7 +55,7 @@ class SecondFragment : BaseFragment<FragmentSecondBinding>(FragmentSecondBinding
         }
 
         inner class ItemViewHolder(private val binding: ViewMessageTypingBoxBinding) : RecyclerView.ViewHolder(binding.root) {
-            fun bindData(item: MenuItem) {
+            fun bindData(item: NavItem) {
                 binding.tb.setText(item.name)
             }
         }
