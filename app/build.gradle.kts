@@ -61,6 +61,10 @@ dependencies {
     implementation(project(":core:ui"))
 
     implementation(project(":feature:webview"))
+    implementation(project(":feature:media"))
+    implementation(project(":feature:nav"))
+    implementation(project(":feature:connectivity"))
+    implementation(project(":feature:animation"))
     implementation(project(":feature:backstack"))
     implementation(project(":feature:gesture"))
 

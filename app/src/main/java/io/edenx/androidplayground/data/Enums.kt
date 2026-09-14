@@ -1,13 +1,13 @@
 package io.edenx.androidplayground.data
 
-import io.edenx.androidplayground.component.animation.AnimationActivity
+import io.edenx.androidpark.feature.animation.AnimationActivity
 import io.edenx.androidpark.feature.backstack.BackStackActivity
 import io.edenx.androidplayground.component.payment.billing.PurchaseActivity
 import io.edenx.androidplayground.component.camera.CameraActivity
-import io.edenx.androidplayground.component.connectivity.BluetoothConnectingActivity
-import io.edenx.androidplayground.component.connectivity.FileTransferActivity
-import io.edenx.androidplayground.component.media.PlaylistActivity
-import io.edenx.androidplayground.component.nav.NavigationActivity
+import io.edenx.androidpark.feature.connectivity.BluetoothConnectingActivity
+import io.edenx.androidpark.feature.connectivity.FileTransferActivity
+import io.edenx.androidpark.feature.media.PlaylistActivity
+import io.edenx.androidpark.feature.nav.NavigationActivity
 import io.edenx.androidplayground.component.paging.PagingActivity
 import io.edenx.androidplayground.component.payment.googlepay.GooglePayActivity
 

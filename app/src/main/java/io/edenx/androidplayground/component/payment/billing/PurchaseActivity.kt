@@ -22,6 +22,7 @@ import io.edenx.androidpark.core.ui.BaseActivity
 import io.edenx.androidplayground.util.*
 import javax.inject.Inject
 import io.edenx.androidpark.core.common.SharedPrefUtil
+import io.edenx.androidpark.core.designsystem.R as DesignSystemR
 
 @AndroidEntryPoint
 class PurchaseActivity : BaseActivity<ActivityPurchaseBinding>(ActivityPurchaseBinding::inflate) {
@@ -60,7 +61,7 @@ class PurchaseActivity : BaseActivity<ActivityPurchaseBinding>(ActivityPurchaseB
                     setDrawable(
                         ContextCompat.getDrawable(
                             this@PurchaseActivity,
-                            R.drawable.list_spacing_12
+                            DesignSystemR.drawable.list_spacing_12
                         )!!
                     )
                 })
