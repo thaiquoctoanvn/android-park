@@ -60,6 +60,7 @@ jobs:
             **/build/reports/tests/
             **/build/reports/lint-results-*.html
           retention-days: 7
+          if-no-files-found: ignore
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
