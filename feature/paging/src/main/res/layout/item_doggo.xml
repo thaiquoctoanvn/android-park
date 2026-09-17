@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Was item_menu.xml, shared with the menu grid. The two only ever looked alike:
+  this one shows a photo, the menu cell shows a titled sample card. Duplicating
+  it keeps the menu free to change without touching this sample.
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:cardCornerRadius="@dimen/dp_24"
+    app:layout_constraintDimensionRatio="1:1">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_doggo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+</com.google.android.material.card.MaterialCardView>
