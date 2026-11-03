@@ -11,6 +11,7 @@ import io.edenx.androidpark.feature.nav.NavigationActivity
 import io.edenx.androidpark.feature.paging.PagingActivity
 import io.edenx.androidpark.feature.googlepay.GooglePayActivity
 import io.edenx.androidpark.feature.gesture.MultiTouchActivity
+import io.edenx.androidpark.feature.socket.TickerActivity
 import io.edenx.androidpark.feature.webview.WebViewActivity
 
 enum class TypeMenu(val prompt: String, val screen: Class<*>? = null) {
@@ -26,5 +27,6 @@ enum class TypeMenu(val prompt: String, val screen: Class<*>? = null) {
     LAUNCH_MODE("Launch Mode", BackStackActivity::class.java),
     GOOGLE_PAY("Google Pay", GooglePayActivity::class.java),
     MULTI_TOUCH("Multi Touch (Compose)", MultiTouchActivity::class.java),
+    SOCKET_TICKER("Socket Ticker (Compose)", TickerActivity::class.java),
     WEB_VIEW("WebView", WebViewActivity::class.java)
 }

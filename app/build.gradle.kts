@@ -68,6 +68,7 @@ dependencies {
     implementation(project(":feature:media"))
     implementation(project(":feature:nav"))
     implementation(project(":feature:paging"))
+    implementation(project(":feature:socket"))
     implementation(project(":feature:webview"))
 
     implementation(libs.bundles.androidx.base)
