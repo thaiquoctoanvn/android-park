@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("androidpark.android.application")
     id("androidpark.android.hilt")
@@ -8,12 +10,24 @@ plugins {
 android {
     namespace = "io.edenx.androidpark"
 
+    // Release signing is read from local.properties (gitignored) or, on CI,
+    // from environment variables. Without them, release builds are unsigned.
+    val localProps = Properties().apply {
+        rootProject.file("local.properties").takeIf { it.exists() }?.inputStream()?.use(::load)
+    }
+    fun secret(key: String): String? =
+        localProps.getProperty(key) ?: System.getenv(key)
+
+    val keystoreFile = secret("KEYSTORE_FILE")?.let(rootProject::file)
+
     signingConfigs {
-        create("release") {
-            storeFile = rootProject.file("signing.jks")
-            storePassword = "REMOVED_SECRET"
-            keyAlias = "signing"
-            keyPassword = "REMOVED_SECRET"
+        if (keystoreFile != null && keystoreFile.exists()) {
+            create("release") {
+                storeFile = keystoreFile
+                storePassword = secret("KEYSTORE_PASSWORD")
+                keyAlias = secret("KEY_ALIAS")
+                keyPassword = secret("KEY_PASSWORD")
+            }
         }
     }
 
@@ -41,7 +55,7 @@ android {
             )
             manifestPlaceholders["appName"] = "Andrd Playgrnd"
             buildConfigField("String", "APP_NAME", "\"Andrd Playgrnd\"")
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = signingConfigs.findByName("release")
         }
     }
 
