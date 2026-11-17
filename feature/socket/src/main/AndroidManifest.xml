@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application>
+    <!-- Merged into the app's <application>: lets the client reach the in-process fake server over ws://. -->
+    <application android:networkSecurityConfig="@xml/socket_network_security_config">
         <activity
             android:name=".TickerActivity"
             android:exported="false"
